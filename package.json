@@ -5,18 +5,44 @@
     "packages/*"
   ],
   "scripts": {
+    "compile": "NODE_ENV=production yarn rollup -c",
+    "postinstall": "husky install",
+    "lint": "yarn eslint packages",
+    "lint:files": "yarn eslint --no-ignore --cache --max-warnings 0",
     "start": "NODE_ENV=development yarn rollup -cw",
-    "compile": "NODE_ENV=production yarn rollup -c"
+    "test": "yarn jest"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional",
+      "@commitlint/config-lerna-scopes"
+    ]
+  },
+  "lint-staged": {
+    "packages/**/*.[jt]s?(x)": [
+      "yarn lint:files"
+    ]
   },
   "eslintConfig": {
     "extends": [
       "@azimutlabs"
-    ]
+    ],
+    "rules": {
+      "new-cap": "off"
+    }
   },
   "eslintIgnore": [
     "**/lib",
     ".yarn"
   ],
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.test.json"
+      }
+    },
+    "preset": "ts-jest"
+  },
   "devDependencies": {
     "@azimutlabs/eslint-config": "^0.9.0",
     "@azimutlabs/rollup": "^1.0.1",
@@ -24,6 +50,9 @@
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-lerna-scopes": "^12.1.4",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
@@ -36,10 +65,14 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^6.0.0",
     "jest": "^27.0.5",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.3.1",
     "react": "^17.0.2",
     "rollup": "^2.52.2",
+    "ts-jest": "^27.0.3",
     "typescript": "^4.3.4"
   }
 }
