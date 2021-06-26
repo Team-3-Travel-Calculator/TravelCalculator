@@ -1,0 +1,50 @@
+{
+  "name": "@tc/web.service",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "main": "lib/index.cjs.js",
+  "bin": {
+    "tc-web-service": "bin/tc-web-service.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "bin": "bin",
+    "test": "test"
+  },
+  "scripts": {
+    "compile": "NODE_ENV=production yarn rollup -c",
+    "serve": "yarn node bin/tc-web-service.js",
+    "start": "NODE_ENV=development yarn rollup -cw"
+  },
+  "babel": {
+    "extends": "../../.babelrc"
+  },
+  "browserslist": [
+    "defaults",
+    "node 12"
+  ],
+  "eslintConfig": {
+    "rules": {
+      "functional/no-throw-statement": "off"
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.6.18",
+    "@nestjs/config": "^0.6.3",
+    "@nestjs/core": "^7.6.18",
+    "@nestjs/mongoose": "^7.2.4",
+    "@nestjs/platform-fastify": "^7.6.18",
+    "fastify": "^3.18.0",
+    "mongoose": "^5.12.15",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.7",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@azimutlabs/rollup-config": "^1.0.1",
+    "@azimutlabs/rollup-config-typescript": "^1.0.1",
+    "@types/node": "^14.17.3",
+    "rollup": "^2.52.3",
+    "typescript": "^4.3.4"
+  }
+}
