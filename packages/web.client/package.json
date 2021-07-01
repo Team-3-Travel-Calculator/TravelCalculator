@@ -5,21 +5,10 @@
   "scripts": {
     "start": "yarn next"
   },
-  "babel": {
-    "extends": "../../.babelrc",
-    "presets": [
-      "@babel/react"
-    ]
-  },
   "browserslist": [
     "defaults",
     "node 12"
   ],
-  "babelMacros": {
-    "twin": {
-      "preset": "emotion"
-    }
-  },
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@emotion/babel-plugin": "^11.3.0",
