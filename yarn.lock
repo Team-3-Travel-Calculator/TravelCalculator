@@ -172,20 +172,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azimutlabs/rollup-config-babel@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@azimutlabs/rollup-config-babel@npm:1.0.1"
-  dependencies:
-    "@azimutlabs/rollup-config-essentials": ^1.0.1
-    "@rollup/plugin-babel": ^5.3.0
-  peerDependencies:
-    "@azimutlabs/rollup-config": ^1
-    "@babel/core": ^7
-    rollup: ^2.38
-  checksum: caf904c8debd49d06022acb4e67d3fb73b5c5301f0324a6f9e4d52cd65f74b981ea57cbaa9d0a709496899235e487bbbf158de1e9f7994fb5329f90e3d9d685c
-  languageName: node
-  linkType: hard
-
 "@azimutlabs/rollup-config-essentials@npm:^1.0.1":
   version: 1.0.1
   resolution: "@azimutlabs/rollup-config-essentials@npm:1.0.1"
@@ -441,7 +427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-imports@npm:^7.10.4, @babel/helper-module-imports@npm:^7.12.13, @babel/helper-module-imports@npm:^7.14.5":
+"@babel/helper-module-imports@npm:^7.12.13, @babel/helper-module-imports@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/helper-module-imports@npm:7.14.5"
   dependencies:
@@ -1523,7 +1509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.14.6, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.4":
   version: 7.14.6
   resolution: "@babel/runtime@npm:7.14.6"
   dependencies:
@@ -3473,23 +3459,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-babel@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "@rollup/plugin-babel@npm:5.3.0"
-  dependencies:
-    "@babel/helper-module-imports": ^7.10.4
-    "@rollup/pluginutils": ^3.1.0
-  peerDependencies:
-    "@babel/core": ^7.0.0
-    "@types/babel__core": ^7.1.9
-    rollup: ^1.20.0||^2.0.0
-  peerDependenciesMeta:
-    "@types/babel__core":
-      optional: true
-  checksum: 44efa786f256b46bc4b51866278586306b12eba1b68738f4535ee013cd2fd3b6baed7a7adebf1f179019f054c5c10e9c202360b117851f612cd7e7f5cb4be3e7
-  languageName: node
-  linkType: hard
-
 "@rollup/plugin-node-resolve@npm:^11.2.0":
   version: 11.2.1
   resolution: "@rollup/plugin-node-resolve@npm:11.2.1"
@@ -3608,22 +3577,6 @@ __metadata:
     react-dom: ^17.0.2
     tailwindcss: ^2.2.4
     twin.macro: ^2.5.0
-    typescript: ^4.3.4
-  languageName: unknown
-  linkType: soft
-
-"@tc/web.domain@workspace:packages/web.domain":
-  version: 0.0.0-use.local
-  resolution: "@tc/web.domain@workspace:packages/web.domain"
-  dependencies:
-    "@azimutlabs/rollup-config": ^1.0.1
-    "@azimutlabs/rollup-config-babel": ^1.0.1
-    "@azimutlabs/rollup-config-typescript": ^1.0.1
-    "@babel/core": ^7.14.6
-    "@babel/runtime": ^7.14.6
-    "@types/node": ^14.17.3
-    rollup: ^2.52.3
-    tslib: ^2.3.0
     typescript: ^4.3.4
   languageName: unknown
   linkType: soft
