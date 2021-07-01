@@ -1,8 +1,23 @@
+import { AppBar, Button, CssBaseline, IconButton, Toolbar } from '@material-ui/core';
+import { Mail } from '@material-ui/icons';
 import type { NextPage } from 'next';
-import tw from 'twin.macro';
 
-const message = 'hello';
+const App: NextPage = () => {
+  const login = 'Login';
 
-const HomePage: NextPage = () => <div css={tw`text-yellow-100 bg-black`}>{message}</div>;
+  return (
+    <>
+      <CssBaseline />
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <Mail />
+          </IconButton>
+          <Button color="inherit">{login}</Button>
+        </Toolbar>
+      </AppBar>
+    </>
+  );
+};
 
-export default HomePage;
+export default App;
