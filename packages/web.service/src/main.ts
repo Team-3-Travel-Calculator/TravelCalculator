@@ -1,11 +1,18 @@
-import { NestFactory } from '@nestjs/core';
-import { FastifyAdapter } from '@nestjs/platform-fastify';
+import { config } from 'dotenv';
+import express from 'express';
+import { logger } from 'logger';
+import { resolve } from 'path';
 
-import { AppModule } from './app.module';
+import { isProduction } from './services/isProduction';
 
-const defaultPort = 6901;
+export const main = (): void => {
+  if (!isProduction()) config({ path: resolve(__dirname, '../.env') });
 
-export const main = async (): Promise<void> => {
-  const app = await NestFactory.create(AppModule, new FastifyAdapter());
-  await app.listen(defaultPort);
+  const mainLogger = logger.getLogger('main');
+
+  const app = express();
+
+  app.listen(process.env.PORT, () => {
+    mainLogger.info(`successfully started application on: ${process.env.PORT}`);
+  });
 };
