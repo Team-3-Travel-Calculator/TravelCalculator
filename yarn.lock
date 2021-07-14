@@ -3527,7 +3527,6 @@ __metadata:
     jest: ^27.0.5
     lerna: ^4.0.0
     lint-staged: ^11.0.0
-    mongodb: ^3.6.10
     mongoose: ^5.13.2
     prettier: ^2.3.1
     react: ^17.0.2
@@ -3574,7 +3573,6 @@ __metadata:
     dotenv: ^10.0.0
     express: ^4.17.1
     log4js: ^6.3.0
-    mongodb: ^3.6.9
     mongoose: ^5.13.2
     rollup: ^2.52.3
     tslib: ^2.3.0
@@ -10422,36 +10420,6 @@ __metadata:
     snappy:
       optional: true
   checksum: 45ae28f921ff1f7cc35cc4b58bf9010d551a7e727ecaa5ad501c556c6693c45b4006798e5b22759ca26327a2fbe71dde8164e3e976c247be194e220b2715a5a4
-  languageName: node
-  linkType: hard
-
-"mongodb@npm:^3.6.10, mongodb@npm:^3.6.9":
-  version: 3.6.10
-  resolution: "mongodb@npm:3.6.10"
-  dependencies:
-    bl: ^2.2.1
-    bson: ^1.1.4
-    denque: ^1.4.1
-    optional-require: ^1.0.3
-    safe-buffer: ^5.1.2
-    saslprep: ^1.0.0
-  dependenciesMeta:
-    saslprep:
-      optional: true
-  peerDependenciesMeta:
-    aws4:
-      optional: true
-    bson-ext:
-      optional: true
-    kerberos:
-      optional: true
-    mongodb-client-encryption:
-      optional: true
-    mongodb-extjson:
-      optional: true
-    snappy:
-      optional: true
-  checksum: 259930dd39103e2d325124c4d2f02f53bf7c191c95925513e6b26857d6ad48afece4f021615e0e04afb4d7096c1bb6a7836c0c0c17ee1b482d4f59701527288a
   languageName: node
   linkType: hard
 

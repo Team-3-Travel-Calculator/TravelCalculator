@@ -76,7 +76,6 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
-    "mongodb": "^3.6.10",
     "mongoose": "^5.13.2"
   }
 }
