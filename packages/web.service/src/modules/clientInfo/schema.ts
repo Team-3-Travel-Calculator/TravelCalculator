@@ -1,28 +1,40 @@
 import { model, Schema } from 'mongoose';
 
-enum ClientTypes {
-  Company = 0,
-  Individual = 1,
+import type { Countries } from '../countries';
+import type { Languages } from '../languages';
+
+export enum Types {
+  Company = 1,
+  Individual = 2,
 }
 
-type ClientInfo = {
-  readonly clientType: ClientTypes;
-  readonly companyName: string;
-  readonly country: string;
-  readonly contactPerson: string;
+export type Base = {
+  readonly country: Countries;
   readonly email: string;
   readonly phone: string;
-  readonly language: string;
+  readonly language: Languages;
 };
 
-const schema = new Schema<ClientInfo>({
-  clientType: { type: String, required: true },
-  companyName: String,
-  country: { type: String, required: true },
-  contactPerson: { type: String, required: true },
+export type Company = {
+  readonly clientType: Types.Company;
+  readonly companyName: string;
+};
+
+export type Individual = {
+  readonly clientType: Types.Individual;
+  readonly fullName: string;
+};
+
+export type ClientInfo = Individual | (Base & Company);
+
+export const schema = new Schema<ClientInfo>({
+  clientType: { type: Number, required: true },
+  fullName: { type: String, nullable: true, default: null },
+  companyName: { type: String, nullable: true, default: null },
+  country: { type: Schema.Types.ObjectId, ref: 'Countries', required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
-  language: { type: String, required: true },
+  language: { type: Schema.Types.ObjectId, ref: 'Languages', required: true },
 });
 
 export const ClientInfoModel = model<ClientInfo>('ClientInfo', schema);
