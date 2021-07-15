@@ -3546,7 +3546,11 @@ __metadata:
     jest: ^27.0.5
     lerna: ^4.0.0
     lint-staged: ^11.0.0
+<<<<<<< HEAD
     mongoose: ^5.13.3
+=======
+    mongoose: ^5.13.2
+>>>>>>> 3eb8c6e (feat(web.service): add GroupSize, GuideType, Guides schemas)
     prettier: ^2.3.1
     react: ^17.0.2
     rollup: ^2.52.2
