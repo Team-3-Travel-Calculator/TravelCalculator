@@ -1,21 +1,21 @@
 import { config } from 'dotenv';
-import express from 'express';
+import express, { json } from 'express';
 import { logger } from 'logger';
 import { resolve } from 'path';
 
-import mongoConnection from './services/connectMongo';
+import { databaseConnect } from './database';
 import { isProduction } from './services/isProduction';
 
-export const main = (): void => {
+export const main = async (): Promise<void> => {
   if (!isProduction()) config({ path: resolve(__dirname, '../.env') });
 
   const mainLogger = logger.getLogger('main');
 
-  mongoConnection().catch((error: string) => mainLogger.debug(error));
+  await databaseConnect();
 
-  const app = express();
-
-  app.listen(process.env.PORT, () => {
-    mainLogger.info(`successfully started application on: ${process.env.PORT}`);
-  });
+  express()
+    .use(json())
+    .listen(process.env.PORT, () => {
+      mainLogger.info(`successfully started application on: ${process.env.PORT}`);
+    });
 };
