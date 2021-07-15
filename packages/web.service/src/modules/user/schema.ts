@@ -1,30 +1,26 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-enum UserRoles {
+export enum UserRoles {
   Admin = 1,
   Owner = 2,
   Manager = 3,
 }
-type User = {
+export type User = {
   readonly username: string;
   readonly password: string;
   readonly email: string;
   readonly role: UserRoles;
   readonly token: string;
 };
-const UserSchema = new Schema<User>({
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+const schema = new Schema<User>({
   email: {
     type: String,
     required: true,
     unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   role: {
     type: Number,
@@ -38,4 +34,4 @@ const UserSchema = new Schema<User>({
   },
 });
 
-export const UserModel = mongoose.model<User>('User', UserSchema);
+export const UserModel = model<User>('User', schema);
