@@ -4679,6 +4679,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@mapbox/node-pre-gyp", [
+        ["npm:1.0.5", {
+          "packageLocation": "./.yarn/cache/@mapbox-node-pre-gyp-npm-1.0.5-4e17430ec9-82d337a6df.zip/node_modules/@mapbox/node-pre-gyp/",
+          "packageDependencies": [
+            ["@mapbox/node-pre-gyp", "npm:1.0.5"],
+            ["detect-libc", "npm:1.0.3"],
+            ["https-proxy-agent", "npm:5.0.0"],
+            ["make-dir", "npm:3.1.0"],
+            ["node-fetch", "npm:2.6.1"],
+            ["nopt", "npm:5.0.0"],
+            ["npmlog", "npm:4.1.2"],
+            ["rimraf", "npm:3.0.2"],
+            ["semver", "npm:7.3.5"],
+            ["tar", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@material-ui/core", [
         ["npm:4.11.4", {
           "packageLocation": "./.yarn/cache/@material-ui-core-npm-4.11.4-d024c4b650-98c5e25c33.zip/node_modules/@material-ui/core/",
@@ -5461,15 +5479,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tc/web.service", "workspace:packages/web.service"],
             ["@azimutlabs/rollup-config", "virtual:be1bf3c0cd9a1334a3b3eee62435f49d7b94f01c2961331fa74d048c15eb6730568149047271e1e10f725000d59cedb68e39a60fbf777dc125e410e5514d599f#npm:1.0.1"],
             ["@azimutlabs/rollup-config-typescript", "virtual:be1bf3c0cd9a1334a3b3eee62435f49d7b94f01c2961331fa74d048c15eb6730568149047271e1e10f725000d59cedb68e39a60fbf777dc125e410e5514d599f#npm:1.0.1"],
+            ["@types/bcrypt", "npm:5.0.0"],
             ["@types/express", "npm:4.17.12"],
+            ["@types/express-validator", "npm:3.0.0"],
             ["@types/mongodb", "npm:3.6.19"],
             ["@types/mongoose", "npm:5.11.97"],
             ["@types/node", "npm:14.17.3"],
+            ["bcrypt", "npm:5.0.1"],
             ["dotenv", "npm:10.0.0"],
             ["express", "npm:4.17.1"],
+            ["express-validator", "npm:6.12.0"],
+            ["http-status-codes", "npm:2.1.4"],
             ["log4js", "npm:6.3.0"],
             ["mongodb", "virtual:be1bf3c0cd9a1334a3b3eee62435f49d7b94f01c2961331fa74d048c15eb6730568149047271e1e10f725000d59cedb68e39a60fbf777dc125e410e5514d599f#npm:3.6.9"],
             ["mongoose", "npm:5.13.2"],
+            ["nanoid", "npm:3.1.23"],
             ["rollup", "npm:2.52.3"],
             ["tslib", "npm:2.3.0"],
             ["typescript", "patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"]
@@ -5527,6 +5551,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@types/babel__traverse", "npm:7.11.1"],
             ["@babel/types", "npm:7.14.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/bcrypt", [
+        ["npm:5.0.0", {
+          "packageLocation": "./.yarn/cache/@types-bcrypt-npm-5.0.0-c074c165c2-4cf4cb6e13.zip/node_modules/@types/bcrypt/",
+          "packageDependencies": [
+            ["@types/bcrypt", "npm:5.0.0"],
+            ["@types/node", "npm:15.12.4"]
           ],
           "linkType": "HARD",
         }]
@@ -5592,6 +5626,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:15.12.4"],
             ["@types/qs", "npm:6.9.6"],
             ["@types/range-parser", "npm:1.2.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/express-validator", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@types-express-validator-npm-3.0.0-440b67c317-250a597356.zip/node_modules/@types/express-validator/",
+          "packageDependencies": [
+            ["@types/express-validator", "npm:3.0.0"],
+            ["express-validator", "npm:6.12.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6984,6 +7028,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/base64-js-npm-1.5.1-b2f7275641-c1b41a26dd.zip/node_modules/base64-js/",
           "packageDependencies": [
             ["base64-js", "npm:1.5.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bcrypt", [
+        ["npm:5.0.1", {
+          "packageLocation": "./.yarn/unplugged/bcrypt-npm-5.0.1-6815be1cfe/node_modules/bcrypt/",
+          "packageDependencies": [
+            ["bcrypt", "npm:5.0.1"],
+            ["@mapbox/node-pre-gyp", "npm:1.0.5"],
+            ["node-addon-api", "npm:3.2.1"]
           ],
           "linkType": "HARD",
         }]
@@ -8695,6 +8750,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["detect-libc", [
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/detect-libc-npm-1.0.3-c30ac344d4-6cec442139.zip/node_modules/detect-libc/",
+          "packageDependencies": [
+            ["detect-libc", "npm:1.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["detect-newline", [
         ["npm:3.1.0", {
           "packageLocation": "./.yarn/cache/detect-newline-npm-3.1.0-6d33fa8d37-6d3f67971d.zip/node_modules/detect-newline/",
@@ -9763,6 +9827,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["express-validator", [
+        ["npm:6.12.0", {
+          "packageLocation": "./.yarn/cache/express-validator-npm-6.12.0-c925e57cd7-99ba3fb484.zip/node_modules/express-validator/",
+          "packageDependencies": [
+            ["express-validator", "npm:6.12.0"],
+            ["lodash", "npm:4.17.21"],
+            ["validator", "npm:13.6.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["extend", [
         ["npm:3.0.2", {
           "packageLocation": "./.yarn/cache/extend-npm-3.0.2-e1ca07ac54-1406da1f0c.zip/node_modules/extend/",
@@ -10728,6 +10803,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["assert-plus", "npm:1.0.0"],
             ["jsprim", "npm:1.4.1"],
             ["sshpk", "npm:1.16.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["http-status-codes", [
+        ["npm:2.1.4", {
+          "packageLocation": "./.yarn/cache/http-status-codes-npm-2.1.4-e5672be5a5-7cd5b1c88e.zip/node_modules/http-status-codes/",
+          "packageDependencies": [
+            ["http-status-codes", "npm:2.1.4"]
           ],
           "linkType": "HARD",
         }]
@@ -13786,6 +13870,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "react-dom",
             "react",
             "sass"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-addon-api", [
+        ["npm:3.2.1", {
+          "packageLocation": "./.yarn/unplugged/node-addon-api-npm-3.2.1-a29528f81d/node_modules/node-addon-api/",
+          "packageDependencies": [
+            ["node-addon-api", "npm:3.2.1"],
+            ["node-gyp", "npm:8.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -18130,6 +18224,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["validate-npm-package-name", "npm:3.0.0"],
             ["builtins", "npm:1.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["validator", [
+        ["npm:13.6.0", {
+          "packageLocation": "./.yarn/cache/validator-npm-13.6.0-2ca88b50f3-6ae43bfd47.zip/node_modules/validator/",
+          "packageDependencies": [
+            ["validator", "npm:13.6.0"]
           ],
           "linkType": "HARD",
         }]

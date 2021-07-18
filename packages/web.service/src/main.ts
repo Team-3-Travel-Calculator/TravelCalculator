@@ -4,6 +4,7 @@ import { logger } from 'logger';
 import { resolve } from 'path';
 
 import { databaseConnect } from './database';
+import { userRouter } from './modules/user';
 import { isProduction } from './services/isProduction';
 
 export const main = async (): Promise<void> => {
@@ -15,6 +16,7 @@ export const main = async (): Promise<void> => {
 
   express()
     .use(json())
+    .use(userRouter)
     .listen(process.env.PORT, () => {
       mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });

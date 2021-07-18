@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
 export enum UserRoles {
   Admin = 1,
@@ -6,7 +6,6 @@ export enum UserRoles {
   Manager = 3,
 }
 export type User = {
-  readonly username: string;
   readonly password: string;
   readonly email: string;
   readonly role: UserRoles;
