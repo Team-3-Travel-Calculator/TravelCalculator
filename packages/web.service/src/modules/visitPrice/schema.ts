@@ -1,29 +1,29 @@
 import { model, Schema } from 'mongoose';
 
-import type { Locations } from '../locations';
+import type { Location } from '../location';
 
-//  Just for code working, it would be import to PersonType schema
-type PersonType = {
-  readonly personType: string;
-};
+//  TODO: add PersonType enum
+enum PersonType {}
 
-//  Just for code working, it would be import to Seasons schema
-type Seasons = {
-  readonly season: string;
+//  TODO: add Season enum
+enum Season {}
+
+export type RawPrice = {
+  readonly price: string;
 };
 
 export type VisitPrice = {
-  readonly location: Locations;
+  readonly visitLocation: Location;
   readonly personType: PersonType;
-  readonly season: Seasons;
-  readonly price: number;
+  readonly season: Season;
+  readonly price: RawPrice;
 };
 
-export const schema = new Schema<VisitPrice>({
-  location: { type: Schema.Types.ObjectId, ref: 'Locations', required: true },
-  personType: { type: Schema.Types.ObjectId, ref: 'PersonTypes', required: true },
-  season: { type: Schema.Types.ObjectId, ref: 'Seasons', required: true },
-  price: { type: Number, required: true },
+const schema = new Schema<VisitPrice>({
+  visitLocation: { type: Schema.Types.ObjectId, ref: 'Location', required: true },
+  personType: { enum: PersonType, required: true },
+  season: { enum: Season, required: true },
+  price: { type: String, required: true },
 });
 
 export const VisitPriceModel = model<VisitPrice>('VisitPrice', schema);
