@@ -5542,10 +5542,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/bson", [
-        ["npm:4.0.3", {
-          "packageLocation": "./.yarn/cache/@types-bson-npm-4.0.3-4ec8c44242-73c0179851.zip/node_modules/@types/bson/",
+        ["npm:4.0.4", {
+          "packageLocation": "./.yarn/cache/@types-bson-npm-4.0.4-725db9127e-4b1f19b55e.zip/node_modules/@types/bson/",
           "packageDependencies": [
-            ["@types/bson", "npm:4.0.3"],
+            ["@types/bson", "npm:4.0.4"],
             ["@types/node", "npm:15.12.4"]
           ],
           "linkType": "HARD",
@@ -5691,11 +5691,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/mongodb", [
-        ["npm:3.6.19", {
-          "packageLocation": "./.yarn/cache/@types-mongodb-npm-3.6.19-7eeb85dccc-fd8a8491de.zip/node_modules/@types/mongodb/",
+        ["npm:3.6.20", {
+          "packageLocation": "./.yarn/cache/@types-mongodb-npm-3.6.20-d771b4fe12-ee78b69d89.zip/node_modules/@types/mongodb/",
           "packageDependencies": [
-            ["@types/mongodb", "npm:3.6.19"],
-            ["@types/bson", "npm:4.0.3"],
+            ["@types/mongodb", "npm:3.6.20"],
+            ["@types/bson", "npm:4.0.4"],
             ["@types/node", "npm:15.12.4"]
           ],
           "linkType": "HARD",
@@ -5716,10 +5716,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:15.14.1", {
-          "packageLocation": "./.yarn/cache/@types-node-npm-15.14.1-991c0e1117-6340f64e43.zip/node_modules/@types/node/",
+        ["npm:15.14.2", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-15.14.2-9671b0b90b-10982df2b5.zip/node_modules/@types/node/",
           "packageDependencies": [
-            ["@types/node", "npm:15.14.1"]
+            ["@types/node", "npm:15.14.2"]
           ],
           "linkType": "HARD",
         }]
@@ -13485,8 +13485,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mongoose-npm-5.13.2-e03369481f-1b1d6c13e8.zip/node_modules/mongoose/",
           "packageDependencies": [
             ["mongoose", "npm:5.13.2"],
-            ["@types/mongodb", "npm:3.6.19"],
-            ["@types/node", "npm:15.14.1"],
+            ["@types/mongodb", "npm:3.6.20"],
+            ["@types/node", "npm:15.14.2"],
             ["bson", "npm:1.1.6"],
             ["kareem", "npm:2.3.2"],
             ["mongodb", "virtual:e03369481fbfaa0f398e55feade500ab2af5ce739114e17ffcf0dce7236c1e5faba5a2c8ae39381462f0737f98503ac33ce5f41b99c0d946a507148f806ed825#npm:3.6.8"],

@@ -3641,11 +3641,11 @@ __metadata:
   linkType: hard
 
 "@types/bson@npm:*":
-  version: 4.0.3
-  resolution: "@types/bson@npm:4.0.3"
+  version: 4.0.4
+  resolution: "@types/bson@npm:4.0.4"
   dependencies:
     "@types/node": "*"
-  checksum: 73c0179851f02bd43f010db65c465b09f7c495b35b0e3820a79d36f4bb209c84a512121c1af4c1d2512e5f13cd27cc74fa8aa6f3df9b17b7cca9d37d59ece3ce
+  checksum: 4b1f19b55e598169888a4ed76c77399a5a21427ea7ced267d28777c14475443d6cd5b0bb7e9d58797e49598b073410a8982acab633bf598f76c6d0786fc6be0d
   languageName: node
   linkType: hard
 
@@ -3768,12 +3768,12 @@ __metadata:
   linkType: hard
 
 "@types/mongodb@npm:^3.5.27":
-  version: 3.6.19
-  resolution: "@types/mongodb@npm:3.6.19"
+  version: 3.6.20
+  resolution: "@types/mongodb@npm:3.6.20"
   dependencies:
     "@types/bson": "*"
     "@types/node": "*"
-  checksum: fd8a8491de0c67eda43114229700ab72ce04e1d8ec94d9bf46f2810b202f8744dafb9556133689f209f951a27c12e8f7f45cc2364f1c2563ad37d08896f6c6fc
+  checksum: ee78b69d894ab53d0ea17d155005babdf8b36aa04f1f60c1a197a1b57e9da70bc89bce381a95357fe01aec79800a8c2df1b615e4779c39263236749402d4a78b
   languageName: node
   linkType: hard
 
@@ -3785,9 +3785,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:14.x || 15.x":
-  version: 15.14.1
-  resolution: "@types/node@npm:15.14.1"
-  checksum: 6340f64e439381a4843ac9d8087d92370caf5fac44b296d83ddb93f0212a9f8ac3ca80b38958519dac4b104d7aa8e75e4a5ae8c3fce3b1bd3cc2c86c2a9bc8b9
+  version: 15.14.2
+  resolution: "@types/node@npm:15.14.2"
+  checksum: 10982df2b5b6aa995e4ce12feca15262ea5127ff2e98f4558945dc7d5dd2b78eb1d727318d5f3b3003ef1b066c7f7e6b3df45a5b7fb0b859231028fba3212c6b
   languageName: node
   linkType: hard
 
