@@ -72,6 +72,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:03e97466d6bac1dcea60eddabc829071f732ae044b1ea729e48781e73a1b63749ba53d282400cbffe8a8677178a80794814e3cf1273fff5eb0adecf6b5c56555#npm:27.0.5"],
             ["lerna", "npm:4.0.0"],
             ["lint-staged", "npm:11.0.0"],
+            ["mongoose", "npm:5.13.3"],
             ["prettier", "npm:2.3.1"],
             ["react", "npm:17.0.2"],
             ["rollup", "npm:2.52.2"],
@@ -5417,6 +5418,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:03e97466d6bac1dcea60eddabc829071f732ae044b1ea729e48781e73a1b63749ba53d282400cbffe8a8677178a80794814e3cf1273fff5eb0adecf6b5c56555#npm:27.0.5"],
             ["lerna", "npm:4.0.0"],
             ["lint-staged", "npm:11.0.0"],
+            ["mongoose", "npm:5.13.3"],
             ["prettier", "npm:2.3.1"],
             ["react", "npm:17.0.2"],
             ["rollup", "npm:2.52.2"],
@@ -13443,12 +13445,46 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["mongodb", [
+        ["npm:3.6.10", {
+          "packageLocation": "./.yarn/cache/mongodb-npm-3.6.10-f377962fb3-259930dd39.zip/node_modules/mongodb/",
+          "packageDependencies": [
+            ["mongodb", "npm:3.6.10"]
+          ],
+          "linkType": "SOFT",
+        }],
         ["npm:3.6.8", {
           "packageLocation": "./.yarn/cache/mongodb-npm-3.6.8-6e13179694-45ae28f921.zip/node_modules/mongodb/",
           "packageDependencies": [
             ["mongodb", "npm:3.6.8"]
           ],
           "linkType": "SOFT",
+        }],
+        ["virtual:21053a0200bdaf0dbe90ba3e53af78b2d57611950406afa6acdcb695ef319075bc34d0e141b80acb886bb6f56bef24d5a666f21de3c5cee835b2d9c085c49f8e#npm:3.6.10", {
+          "packageLocation": "./.yarn/$$virtual/mongodb-virtual-aa0ce19cf1/0/cache/mongodb-npm-3.6.10-f377962fb3-259930dd39.zip/node_modules/mongodb/",
+          "packageDependencies": [
+            ["mongodb", "virtual:21053a0200bdaf0dbe90ba3e53af78b2d57611950406afa6acdcb695ef319075bc34d0e141b80acb886bb6f56bef24d5a666f21de3c5cee835b2d9c085c49f8e#npm:3.6.10"],
+            ["aws4", null],
+            ["bl", "npm:2.2.1"],
+            ["bson", "npm:1.1.6"],
+            ["bson-ext", null],
+            ["denque", "npm:1.5.0"],
+            ["kerberos", null],
+            ["mongodb-client-encryption", null],
+            ["mongodb-extjson", null],
+            ["optional-require", "npm:1.0.3"],
+            ["safe-buffer", "npm:5.2.1"],
+            ["saslprep", "npm:1.0.3"],
+            ["snappy", null]
+          ],
+          "packagePeers": [
+            "aws4",
+            "bson-ext",
+            "kerberos",
+            "mongodb-client-encryption",
+            "mongodb-extjson",
+            "snappy"
+          ],
+          "linkType": "HARD",
         }],
         ["virtual:e03369481fbfaa0f398e55feade500ab2af5ce739114e17ffcf0dce7236c1e5faba5a2c8ae39381462f0737f98503ac33ce5f41b99c0d946a507148f806ed825#npm:3.6.8", {
           "packageLocation": "./.yarn/$$virtual/mongodb-virtual-305fdcedba/0/cache/mongodb-npm-3.6.8-6e13179694-45ae28f921.zip/node_modules/mongodb/",
@@ -13498,6 +13534,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["sliced", "npm:1.0.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.13.3", {
+          "packageLocation": "./.yarn/cache/mongoose-npm-5.13.3-21053a0200-3b77b9e6c6.zip/node_modules/mongoose/",
+          "packageDependencies": [
+            ["mongoose", "npm:5.13.3"],
+            ["@types/mongodb", "npm:3.6.20"],
+            ["@types/node", "npm:15.14.2"],
+            ["bson", "npm:1.1.6"],
+            ["kareem", "npm:2.3.2"],
+            ["mongodb", "virtual:21053a0200bdaf0dbe90ba3e53af78b2d57611950406afa6acdcb695ef319075bc34d0e141b80acb886bb6f56bef24d5a666f21de3c5cee835b2d9c085c49f8e#npm:3.6.10"],
+            ["mongoose-legacy-pluralize", "virtual:21053a0200bdaf0dbe90ba3e53af78b2d57611950406afa6acdcb695ef319075bc34d0e141b80acb886bb6f56bef24d5a666f21de3c5cee835b2d9c085c49f8e#npm:1.0.2"],
+            ["mpath", "npm:0.8.3"],
+            ["mquery", "npm:3.2.5"],
+            ["ms", "npm:2.1.2"],
+            ["regexp-clone", "npm:1.0.0"],
+            ["safe-buffer", "npm:5.2.1"],
+            ["sift", "npm:13.5.2"],
+            ["sliced", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["mongoose-legacy-pluralize", [
@@ -13507,6 +13563,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mongoose-legacy-pluralize", "npm:1.0.2"]
           ],
           "linkType": "SOFT",
+        }],
+        ["virtual:21053a0200bdaf0dbe90ba3e53af78b2d57611950406afa6acdcb695ef319075bc34d0e141b80acb886bb6f56bef24d5a666f21de3c5cee835b2d9c085c49f8e#npm:1.0.2", {
+          "packageLocation": "./.yarn/$$virtual/mongoose-legacy-pluralize-virtual-b06b91638f/0/cache/mongoose-legacy-pluralize-npm-1.0.2-2fbdda9a5a-a1f86450b3.zip/node_modules/mongoose-legacy-pluralize/",
+          "packageDependencies": [
+            ["mongoose-legacy-pluralize", "virtual:21053a0200bdaf0dbe90ba3e53af78b2d57611950406afa6acdcb695ef319075bc34d0e141b80acb886bb6f56bef24d5a666f21de3c5cee835b2d9c085c49f8e#npm:1.0.2"],
+            ["@types/mongoose", null],
+            ["mongoose", "npm:5.13.3"]
+          ],
+          "packagePeers": [
+            "@types/mongoose",
+            "mongoose"
+          ],
+          "linkType": "HARD",
         }],
         ["virtual:e03369481fbfaa0f398e55feade500ab2af5ce739114e17ffcf0dce7236c1e5faba5a2c8ae39381462f0737f98503ac33ce5f41b99c0d946a507148f806ed825#npm:1.0.2", {
           "packageLocation": "./.yarn/$$virtual/mongoose-legacy-pluralize-virtual-8716ca7076/0/cache/mongoose-legacy-pluralize-npm-1.0.2-2fbdda9a5a-a1f86450b3.zip/node_modules/mongoose-legacy-pluralize/",
@@ -29114,7 +29183,7 @@ module.exports = require("path");;
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -29127,14 +29196,14 @@ module.exports = require("path");;
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -29147,7 +29216,7 @@ module.exports = require("path");;
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -29159,12 +29228,12 @@ module.exports = require("path");;
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
