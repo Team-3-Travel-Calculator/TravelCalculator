@@ -7,14 +7,14 @@ type Client = {
   readonly client: string;
 };
 
-// TODO: add PersonType enum
-enum PersonType {}
+// TODO: add PersonTypes enum
+enum PersonTypes {}
 
-// TODO: add Season enum
-enum Season {}
+// TODO: add SeasonTypes enum
+enum SeasonTypes {}
 
 export type Visitors = {
-  readonly personType: PersonType;
+  readonly personType: PersonTypes;
   readonly count: number;
 };
 
@@ -24,7 +24,7 @@ export type Visit = {
   readonly orderedLocations: readonly Location[];
   readonly totalHours: string;
   readonly visitors: readonly Visitors[];
-  readonly orderedSeason: Season;
+  readonly orderedSeason: SeasonTypes;
 };
 
 const schema = new Schema<Visit>({
@@ -34,11 +34,11 @@ const schema = new Schema<Visit>({
   totalHours: { type: String, required: true },
   visitors: [
     {
-      personType: { enum: PersonType, required: true },
+      personType: { type: Number, enum: Object.values(PersonTypes), required: true },
       count: { type: Number, required: true },
     },
   ],
-  orderedSeason: { enum: Season, required: true },
+  orderedSeason: { type: Number, enum: Object.values(SeasonTypes), required: true },
 });
 
 export const VisitModel = model<Visit>('Visit', schema);
