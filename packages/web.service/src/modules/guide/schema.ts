@@ -1,17 +1,14 @@
 import { model, Schema } from 'mongoose';
 
-// TODO: add Season enum
-enum Season {}
+import type { PriceRaw } from '../price';
 
-// TODO: add Type enum
-enum Type {}
+// TODO: add SeasonTypes enum
+enum SeasonTypes {}
 
-// TODO: add RawPrice type from Visit schema
-type RawPrice = {
-  readonly price: string;
-};
+// TODO: add ComfortLevels enum
+enum ComfortLevels {}
 
-export enum GuideGroupSize {
+export enum GuideGroupSizes {
   Small = 5,
   Medium = 15,
   Large = 50,
@@ -30,7 +27,7 @@ export type GuideTransfer = {
 
 export type GuideTour = {
   readonly type: GuideTypes.Tour;
-  readonly workTime: string;
+  readonly workHours: string;
 };
 
 export type GuideInstructor = {
@@ -45,18 +42,18 @@ export type GuideType = GuideInstructor | GuideSkiInstructor | GuideTour | Guide
 
 export type Guide = {
   readonly guideType: GuideType;
-  readonly season: Season;
-  readonly comfortLevel: Type;
-  readonly guideGroupSize: GuideGroupSize;
+  readonly season: SeasonTypes;
+  readonly comfortLevel: ComfortLevels;
+  readonly guideGroupSize: GuideGroupSizes;
   readonly totalWorkHours: string;
-  readonly price: RawPrice;
+  readonly price: PriceRaw;
 };
 
 const schema = new Schema<Guide>({
-  guideType: { enum: GuideTypes, required: true },
-  season: { enum: Season, required: true },
-  comfortLevel: { enum: Type, required: true },
-  groupSize: { enum: GuideGroupSize, required: true },
+  guideType: { type: Number, enum: Object.values(GuideTypes), required: true },
+  season: { type: Number, enum: Object.values(SeasonTypes), required: true },
+  comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
+  groupSize: { type: Number, enum: Object.values(GuideGroupSizes), required: true },
   totalWorkHours: { type: String, required: true },
   price: { type: String, required: true },
 });
