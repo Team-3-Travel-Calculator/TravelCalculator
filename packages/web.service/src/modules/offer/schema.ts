@@ -1,16 +1,8 @@
 import { model, Schema } from 'mongoose';
 
+import type { Client } from '../client';
+import type { PriceRaw } from '../price';
 import type { TourProgram } from '../tourProgram';
-
-// TODO: add Client schema
-type Client = {
-  readonly client: string;
-};
-
-// TODO: add RawPrice type
-type RawPrice = {
-  readonly price: string;
-};
 
 export type Offer = {
   readonly orderId: number;
@@ -20,11 +12,11 @@ export type Offer = {
   readonly tourProgram: TourProgram;
   readonly tourInclusions: string;
   readonly personsNumber: number;
-  readonly totalPrice: RawPrice;
+  readonly totalPrice: PriceRaw;
   readonly conditions: string;
 };
 
-const schema = new Schema<Offer>({
+const offerSchema = new Schema<Offer>({
   orderId: { type: Number, required: true },
   client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
   calculationDate: { type: String, required: true },
@@ -36,4 +28,4 @@ const schema = new Schema<Offer>({
   conditions: { type: String, required: true },
 });
 
-export const OfferModel = model<Offer>('Offer', schema);
+export const OfferModel = model<Offer>('Offer', offerSchema);
