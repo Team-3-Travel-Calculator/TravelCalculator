@@ -1,34 +1,58 @@
-import type { Request, Response } from 'express';
 import { Router } from 'express';
-import { body } from 'express-validator';
+import { body, param } from 'express-validator';
+import createError from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
+import { logger } from 'logger';
+import { handleValidationErrors } from 'services/handleValidationErrors';
 
-import { logger } from '../../logger';
-import { errorHandler } from '../../services/errorhandler';
-import { createNewUser, ifUserFound, isNumberRole } from './actions';
+import { createUserAction, getUserByEmailAction } from './actions';
+import { EmailAlreadyExistsError } from './errors';
+import { UserRoles } from './schema';
 
 const userLogger = logger.getLogger('router.user');
 
-export const serverError = `Sorry, this is not working properly. We now know about this mistake and working to fix it.`;
+const allowedRoles = [UserRoles.Admin, UserRoles.Manager];
 
-export const userRouter = Router().post(
-  '/user',
-  body('email').isEmail().withMessage(`please enter the correct email`),
-  body('password').isLength({ min: 8 }).withMessage('must be at least 8 chars long'),
-  body('role').custom(isNumberRole).withMessage('the specified role was not found'),
-  errorHandler,
-  async (req: Request, res: Response) => {
-    if (await ifUserFound(req.body.email)) return res.send('this user was previously registered');
-    return createNewUser(req.body.email, req.body.password, req.body.role)
-      .then(async (user) => {
-        await user.save();
-        return res.status(StatusCodes.CREATED).send('user created successfully');
-      })
-      .catch((_err) => {
-        userLogger.error(`Server error in router POST  /user`);
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-          error: serverError,
+export const userRouter = Router()
+  .post(
+    '/user',
+    body('email', 'Email is invalid').isEmail(),
+    body('password', 'Password must be longer than 8 characters').isString().isLength({ min: 8 }),
+    body('role', `Role must be one of: ${allowedRoles}`)
+      .isNumeric()
+      .custom((role) => allowedRoles.includes(role)),
+    handleValidationErrors,
+    async (req, res) => {
+      const { email, password, role } = req.body;
+      return createUserAction(email, password, role)
+        .then((user) => {
+          userLogger.info('created new user:', user.email);
+          res.status(StatusCodes.CREATED).send();
+        })
+        .catch((err) => {
+          if (err instanceof EmailAlreadyExistsError) {
+            res.status(StatusCodes.CONFLICT).send(new createError.Conflict(err.message));
+          } else {
+            userLogger.error(err);
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+          }
         });
-      });
-  }
-);
+    }
+  )
+  .get(
+    '/user/:email',
+    param('email', 'Email is invalid').isEmail(),
+    handleValidationErrors,
+    async (req, res) => {
+      const { email } = req.params;
+      return getUserByEmailAction(email)
+        .then((user) => {
+          if (user) res.send({ email: user.email, role: user.role });
+          else res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound());
+        })
+        .catch((err) => {
+          userLogger.error(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+        });
+    }
+  );

@@ -1,31 +1,28 @@
-import { genSalt, hash } from 'bcrypt';
-import { nanoid } from 'nanoid';
+import { genSaltSync, hash } from 'bcrypt';
 
-import type { User } from './schema';
-import { UserModel, UserRoles } from './schema';
+import { EmailAlreadyExistsError } from './errors';
+import type { UserDocument, UserRoles } from './schema';
+import { UserModel } from './schema';
 
-export const ifUserFound = async (email: string): Promise<User | null> =>
+const salt = genSaltSync();
+
+export const logoutUserAction = async (_user: UserDocument): Promise<void> =>
+  Promise.reject(new Error());
+
+export const getUserByEmailAction = async (email: string): Promise<UserDocument | null> =>
   UserModel.findOne({ email });
 
-export const encryptPassword = async (password: string): Promise<string> => {
-  const saltRounds = 10;
-  const salt = await genSalt(saltRounds);
-  return hash(password, salt);
-};
+export const getUserByTokenAction = async (token: string): Promise<UserDocument | null> =>
+  UserModel.findOne({ token });
 
-export const isNumberRole = (value: number): value is UserRoles =>
-  Object.values(UserRoles).includes(value);
-
-export const generateToken = (_token?: string): string => nanoid();
-
-export const createNewUser = async (
+export const createUserAction = async (
   email: string,
   password: string,
-  role: number
-): Promise<UserModel> =>
-  UserModel.create({
-    email,
-    password: await encryptPassword(password),
-    token: generateToken(),
-    role,
-  });
+  role: UserRoles
+): Promise<UserDocument> => {
+  if (await getUserByEmailAction(email)) {
+    return Promise.reject(new EmailAlreadyExistsError());
+  }
+
+  return UserModel.create({ email, role, password: await hash(password, salt) });
+};

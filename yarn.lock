@@ -3589,15 +3589,20 @@ __metadata:
     "@azimutlabs/rollup-config-typescript": ^1.0.1
     "@types/bcrypt": ^5.0.0
     "@types/express": ^4.17.12
+    "@types/http-errors": ^1.8.1
     "@types/node": ^14.17.3
+    "@types/passport": ^1.0.7
+    "@types/passport-http-bearer": ^1.0.37
     bcrypt: ^5.0.1
     dotenv: ^10.0.0
     express: ^4.17.1
     express-validator: ^6.12.0
+    http-errors: ^1.8.0
     http-status-codes: ^2.1.4
     log4js: ^6.3.0
     mongoose: ^5.13.2
     nanoid: ^3.1.23
+    passport: ^0.4.1
     passport-http-bearer: ^1.0.1
     rollup: ^2.52.3
     tslib: ^2.3.0
@@ -3611,6 +3616,15 @@ __metadata:
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
   checksum: d030f3fb14e0373dbf5005d8f696ff34fda87bf56744bea611fc737449bfc0687ebcb28ee8ba4c6624877f51b18d701c0d417d793f406006a192f4721911d048
+  languageName: node
+  linkType: hard
+
+"@types/accepts@npm:*":
+  version: 1.3.5
+  resolution: "@types/accepts@npm:1.3.5"
+  dependencies:
+    "@types/node": "*"
+  checksum: 78a31c01d948c405a1a6a89061f0acd5a89df40de445c36382538985a3d00a236ba1cc5099bd812118525c2f29bb61d4869cd775ba63dd3e160113b5fa203915
   languageName: node
   linkType: hard
 
@@ -3692,6 +3706,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/content-disposition@npm:*":
+  version: 0.5.4
+  resolution: "@types/content-disposition@npm:0.5.4"
+  checksum: 0bfc5986282d9fd671ab6bfd1558f9a6e7448288aacf0c855683948532bd93505f87386d83365593326c85ee0a4212fc7c5d97ddc28576257c5f9f18f25e8f2f
+  languageName: node
+  linkType: hard
+
+"@types/cookies@npm:*":
+  version: 0.7.7
+  resolution: "@types/cookies@npm:0.7.7"
+  dependencies:
+    "@types/connect": "*"
+    "@types/express": "*"
+    "@types/keygrip": "*"
+    "@types/node": "*"
+  checksum: 10ef5880d6bedb29c14a9a6cb6424eadfaeeec8f214162a2a3b130599f6c8356afc799a85b4708ce0c8db28498fce6a88379bfcc0e6be4766886c70e7082347f
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:0.0.39":
   version: 0.0.39
   resolution: "@types/estree@npm:0.0.39"
@@ -3707,6 +3740,18 @@ __metadata:
     "@types/qs": "*"
     "@types/range-parser": "*"
   checksum: e9ed12d6fd0258aa2e247e0398f5c35810680a87919abe58865a5bd7d28f58c365f0fcd0ce51512187f851ae907548c31cce47f0e45ef2d1cf8d3a5014fdc61e
+  languageName: node
+  linkType: hard
+
+"@types/express@npm:*":
+  version: 4.17.13
+  resolution: "@types/express@npm:4.17.13"
+  dependencies:
+    "@types/body-parser": "*"
+    "@types/express-serve-static-core": ^4.17.18
+    "@types/qs": "*"
+    "@types/serve-static": "*"
+  checksum: 9f17da703df21e3f1cee2fe1864b9fcac2ab07c37382b972a194a3a484b41c1fbe4022b6cfe546f0171fd2d93b324dd3839512494f4cba639c2afa021e6dbb12
   languageName: node
   linkType: hard
 
@@ -3728,6 +3773,20 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: ab79ec306d51775542b94bd768162e85fe2a0d47bd2f6033e2aad65bfcae399614ee7662a1370091fc508a8b639e3de0abf6b7232c9fb52047f207ba114ff390
+  languageName: node
+  linkType: hard
+
+"@types/http-assert@npm:*":
+  version: 1.5.1
+  resolution: "@types/http-assert@npm:1.5.1"
+  checksum: 0c9cbc568be88c60870d96953880c9b2c1d7c290df928a4004693debb715b8ad1b3e8a2f4b13b84e22b41379d20d9255e960532cf613a28126e8a433ddabac01
+  languageName: node
+  linkType: hard
+
+"@types/http-errors@npm:*, @types/http-errors@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "@types/http-errors@npm:1.8.1"
+  checksum: 394d9c07ff713f1d96903716bfeb51ed4e08add5f2e9c65d45ace3668f4fb8314be1f82282259770a0893c9d693d9ba637e4cf6a1b8ec1ee7e38a1b01845acba
   languageName: node
   linkType: hard
 
@@ -3777,6 +3836,38 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 66e9ac0143ec521522c7bb670301e9836ee886207eeed1aab6d4854a1b19b404ab3a54cd8d449f9b1f13acc357f540be96f8ac2d1e86e301eab52ae0f9a4066f
+  languageName: node
+  linkType: hard
+
+"@types/keygrip@npm:*":
+  version: 1.0.2
+  resolution: "@types/keygrip@npm:1.0.2"
+  checksum: 8d86a3d702146ae7012571f1783bdc1228cc42ec89472b7ed14c2a46b12b1fa7423e9ecfbe1167bdbc4f26bdc95ee4b3b757a9df29202f98333cddc379b46f6d
+  languageName: node
+  linkType: hard
+
+"@types/koa-compose@npm:*":
+  version: 3.2.5
+  resolution: "@types/koa-compose@npm:3.2.5"
+  dependencies:
+    "@types/koa": "*"
+  checksum: bb6cae03095752d2f351e650ec4f5631c4512aec85bf5f7bab210a91a04714fbe0e75edac120cb56aff2cee5c6549bd6bf7a0ccc35f3adc0aa41d463b0a1f310
+  languageName: node
+  linkType: hard
+
+"@types/koa@npm:*":
+  version: 2.13.4
+  resolution: "@types/koa@npm:2.13.4"
+  dependencies:
+    "@types/accepts": "*"
+    "@types/content-disposition": "*"
+    "@types/cookies": "*"
+    "@types/http-assert": "*"
+    "@types/http-errors": "*"
+    "@types/keygrip": "*"
+    "@types/koa-compose": "*"
+    "@types/node": "*"
+  checksum: e63ff2f0f81c634fb75d1436f6102dda5fc5a332abb1d10af5780ea2d266f377fae79b50ced8a7ccc124feb36fe19011a9d4d402666bc7637a748f10bc31c24a
   languageName: node
   linkType: hard
 
@@ -3843,6 +3934,26 @@ __metadata:
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
   checksum: 4a8f720afac47b474d3f2eece312340e72bc31bc9561cda37b596ce2ed218c0099765d302625bb67d659a8452a1f93d514f4863c11c7ebaf65430428687dc426
+  languageName: node
+  linkType: hard
+
+"@types/passport-http-bearer@npm:^1.0.37":
+  version: 1.0.37
+  resolution: "@types/passport-http-bearer@npm:1.0.37"
+  dependencies:
+    "@types/express": "*"
+    "@types/koa": "*"
+    "@types/passport": "*"
+  checksum: 1a371fcc50ad53d414c8691a9b25fd99e9849d32422bfc390d5e773aac05ae4c148ce2886ea0be7161ecbac0a6f1f857720c6f64b85fe4589800ce87c4617294
+  languageName: node
+  linkType: hard
+
+"@types/passport@npm:*, @types/passport@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@types/passport@npm:1.0.7"
+  dependencies:
+    "@types/express": "*"
+  checksum: fc7405756935bae39f6ea63555e4b0c326854e3cd26f04bcefdaa21478498bd7f15acb96b865b9ae666b1cad55694648c7b2f878a3b2667b3129d2460b4176c4
   languageName: node
   linkType: hard
 
@@ -7990,6 +8101,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"http-errors@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "http-errors@npm:1.8.0"
+  dependencies:
+    depd: ~1.1.2
+    inherits: 2.0.4
+    setprototypeof: 1.2.0
+    statuses: ">= 1.5.0 < 2"
+    toidentifier: 1.0.0
+  checksum: 95ad78508b2929923dac83edd7ce513db87c4214df83a6664559810566da73d9a6892ffdcd76738d9ab9d33172b4c7e304436a4031d471569a7344396fea0ecb
+  languageName: node
+  linkType: hard
+
 "http-proxy-agent@npm:^4.0.1":
   version: 4.0.1
   resolution: "http-proxy-agent@npm:4.0.1"
@@ -11614,6 +11738,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"passport@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "passport@npm:0.4.1"
+  dependencies:
+    passport-strategy: 1.x.x
+    pause: 0.0.1
+  checksum: f26e8debe6397c3600d0172d8c4eb2b6eb3b5081a46da8db72877d341c0c734c35aff789282e36974733485c6e192051771c2e541a1c7f59da69ccac55c937e1
+  languageName: node
+  linkType: hard
+
 "path-browserify@npm:0.0.1":
   version: 0.0.1
   resolution: "path-browserify@npm:0.0.1"
@@ -11703,6 +11837,13 @@ __metadata:
   version: 4.0.0
   resolution: "path-type@npm:4.0.0"
   checksum: ef5835f2eb47e4d06004c7ec7bd51175c0455eaecd5ee99a9774bca5ef43242616e25b44ccc0ba86a0bf42b9f197550fcc0dfa7580e5ff9dca53c035e9bd86a9
+  languageName: node
+  linkType: hard
+
+"pause@npm:0.0.1":
+  version: 0.0.1
+  resolution: "pause@npm:0.0.1"
+  checksum: 94ff516a34a46c79f274f2747f3c5889f92542c8b82faff824d176d25ea2db4cfdbf7f6575494260357d9ab9dc22ff409849319438d4f6c08eb85a128d7db71f
   languageName: node
   linkType: hard
 
@@ -13062,6 +13203,13 @@ resolve@^2.0.0-next.3:
   version: 1.1.1
   resolution: "setprototypeof@npm:1.1.1"
   checksum: 0efed4da5aec7535828ac07c3b560f0a54257a4a7d5390ffabe5530a083974aef577651507974215edb92a51efa142f22fb3242e24d630ba6adcbfc9e7f1ff2b
+  languageName: node
+  linkType: hard
+
+"setprototypeof@npm:1.2.0":
+  version: 1.2.0
+  resolution: "setprototypeof@npm:1.2.0"
+  checksum: 72691439857719aa33ec11ebc97960347f0f96e75c2fe65d0f2ca5c9c44fb1aa026e2ae528959624ed3ae3820fe06bfb1aded306402c5c941afd3dfdf47f79d0
   languageName: node
   linkType: hard
 

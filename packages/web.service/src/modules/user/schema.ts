@@ -1,16 +1,21 @@
+import type { Document } from 'mongoose';
 import { model, Schema } from 'mongoose';
 
 export enum UserRoles {
-  Admin = 1,
-  Owner = 2,
-  Manager = 3,
+  Owner = 8,
+  Admin = 4,
+  Manager = 2,
 }
+
 export type User = {
   readonly email: string;
   readonly password: string;
   readonly role: UserRoles;
-  readonly token: string;
+  readonly token?: string;
 };
+
+export type UserDocument = Document & User;
+
 const schema = new Schema<User>({
   email: {
     type: String,
@@ -24,12 +29,10 @@ const schema = new Schema<User>({
   role: {
     type: Number,
     enum: Object.values(UserRoles),
-    default: UserRoles.Manager,
     required: true,
   },
   token: {
     type: String,
-    required: true,
   },
 });
 

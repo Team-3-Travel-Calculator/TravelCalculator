@@ -7,6 +7,7 @@ export enum ClientTypes {
   Company = 1,
   Individual = 2,
 }
+
 export type ClientBase = {
   readonly country: CountryCode;
   readonly email: string;
