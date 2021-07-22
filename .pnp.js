@@ -72,11 +72,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:03e97466d6bac1dcea60eddabc829071f732ae044b1ea729e48781e73a1b63749ba53d282400cbffe8a8677178a80794814e3cf1273fff5eb0adecf6b5c56555#npm:27.0.5"],
             ["lerna", "npm:4.0.0"],
             ["lint-staged", "npm:11.0.0"],
-<<<<<<< HEAD
             ["mongoose", "npm:5.13.3"],
-=======
-            ["mongoose", "npm:5.13.2"],
->>>>>>> 3eb8c6e (feat(web.service): add GroupSize, GuideType, Guides schemas)
             ["prettier", "npm:2.3.1"],
             ["react", "npm:17.0.2"],
             ["rollup", "npm:2.52.2"],
@@ -5440,11 +5436,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:03e97466d6bac1dcea60eddabc829071f732ae044b1ea729e48781e73a1b63749ba53d282400cbffe8a8677178a80794814e3cf1273fff5eb0adecf6b5c56555#npm:27.0.5"],
             ["lerna", "npm:4.0.0"],
             ["lint-staged", "npm:11.0.0"],
-<<<<<<< HEAD
             ["mongoose", "npm:5.13.3"],
-=======
-            ["mongoose", "npm:5.13.2"],
->>>>>>> 3eb8c6e (feat(web.service): add GroupSize, GuideType, Guides schemas)
             ["prettier", "npm:2.3.1"],
             ["react", "npm:17.0.2"],
             ["rollup", "npm:2.52.2"],
@@ -29303,7 +29295,7 @@ module.exports = require("path");;
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -29316,14 +29308,14 @@ module.exports = require("path");;
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -29336,7 +29328,7 @@ module.exports = require("path");;
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -29348,12 +29340,12 @@ module.exports = require("path");;
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
