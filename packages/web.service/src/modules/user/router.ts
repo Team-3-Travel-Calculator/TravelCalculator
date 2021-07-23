@@ -5,8 +5,9 @@ import { StatusCodes } from 'http-status-codes';
 import { logger } from 'logger';
 import { handleValidationErrors } from 'services/handleValidationErrors';
 
-import { createUserAction, getUserByEmailAction } from './actions';
+import { createUserAction, getUserByEmailAction, logoutUserAction } from './actions';
 import { EmailAlreadyExistsError } from './errors';
+import type { UserDocument } from './schema';
 import { UserRoles } from './schema';
 
 const userLogger = logger.getLogger('router.user');
@@ -14,6 +15,17 @@ const userLogger = logger.getLogger('router.user');
 const allowedRoles = [UserRoles.Admin, UserRoles.Manager];
 
 export const userRouter = Router()
+  .post('/user/logout', (req, res) => {
+    const { id } = req.user as UserDocument;
+    logoutUserAction(id)
+      .then(() => {
+        res.send();
+      })
+      .catch((err) => {
+        userLogger.error(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+      });
+  })
   .post(
     '/user',
     body('email', 'Email is invalid').isEmail(),

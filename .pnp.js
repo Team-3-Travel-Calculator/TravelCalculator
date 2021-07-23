@@ -5495,6 +5495,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["http-status-codes", "npm:2.1.4"],
             ["log4js", "npm:6.3.0"],
             ["mongoose", "npm:5.13.2"],
+            ["mongoose-paginate-ts", "npm:1.2.0"],
             ["nanoid", "npm:3.1.23"],
             ["passport", "npm:0.4.1"],
             ["passport-http-bearer", "npm:1.0.1"],
@@ -13801,6 +13802,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["mongoose-paginate-ts", [
+        ["npm:1.2.0", {
+          "packageLocation": "./.yarn/cache/mongoose-paginate-ts-npm-1.2.0-4d16826c07-4cfb7f7638.zip/node_modules/mongoose-paginate-ts/",
+          "packageDependencies": [
+            ["mongoose-paginate-ts", "npm:1.2.0"],
+            ["mongoose", "npm:5.13.3"],
+            ["typescript", "patch:typescript@npm%3A4.3.5#builtin<compat/typescript>::version=4.3.5&hash=ddfc1b"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["mpath", [
         ["npm:0.8.3", {
           "packageLocation": "./.yarn/cache/mpath-npm-0.8.3-c764f5a56c-6c129da222.zip/node_modules/mpath/",
@@ -18110,6 +18122,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/typescript-patch-e441ed4208-c8766e84a4.zip/node_modules/typescript/",
           "packageDependencies": [
             ["typescript", "patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["patch:typescript@npm%3A4.3.5#builtin<compat/typescript>::version=4.3.5&hash=ddfc1b", {
+          "packageLocation": "./.yarn/cache/typescript-patch-aa8fabd973-7f0b8343f7.zip/node_modules/typescript/",
+          "packageDependencies": [
+            ["typescript", "patch:typescript@npm%3A4.3.5#builtin<compat/typescript>::version=4.3.5&hash=ddfc1b"]
           ],
           "linkType": "HARD",
         }]
