@@ -19,7 +19,7 @@ export const userRouter = Router()
     const { id } = req.user as UserDocument;
     logoutUserAction(id)
       .then(() => {
-        res.status(StatusCodes.ACCEPTED).send();
+        res.send();
       })
       .catch((err) => {
         userLogger.error(err);

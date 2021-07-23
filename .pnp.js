@@ -5484,6 +5484,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/bcrypt", "npm:5.0.0"],
             ["@types/express", "npm:4.17.12"],
             ["@types/http-errors", "npm:1.8.1"],
+            ["@types/mongoose-paginate-v2", "npm:1.3.11"],
             ["@types/node", "npm:14.17.3"],
             ["@types/passport", "npm:1.0.7"],
             ["@types/passport-http-bearer", "npm:1.0.37"],
@@ -5495,6 +5496,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["http-status-codes", "npm:2.1.4"],
             ["log4js", "npm:6.3.0"],
             ["mongoose", "npm:5.13.2"],
+            ["mongoose-paginate-v2", "npm:1.4.1"],
             ["nanoid", "npm:3.1.23"],
             ["passport", "npm:0.4.1"],
             ["passport-http-bearer", "npm:1.0.1"],
@@ -5833,6 +5835,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/mongodb", "npm:3.6.20"],
             ["@types/bson", "npm:4.0.4"],
             ["@types/node", "npm:15.12.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/mongoose", [
+        ["npm:5.10.5", {
+          "packageLocation": "./.yarn/cache/@types-mongoose-npm-5.10.5-724f1f2837-dbc325c71c.zip/node_modules/@types/mongoose/",
+          "packageDependencies": [
+            ["@types/mongoose", "npm:5.10.5"],
+            ["@types/mongodb", "npm:3.6.20"],
+            ["@types/node", "npm:15.12.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/mongoose-paginate-v2", [
+        ["npm:1.3.11", {
+          "packageLocation": "./.yarn/cache/@types-mongoose-paginate-v2-npm-1.3.11-3f56a895c6-53f22ee501.zip/node_modules/@types/mongoose-paginate-v2/",
+          "packageDependencies": [
+            ["@types/mongoose-paginate-v2", "npm:1.3.11"],
+            ["@types/mongoose", "npm:5.10.5"]
           ],
           "linkType": "HARD",
         }]
@@ -13797,6 +13820,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [
             "@types/mongoose",
             "mongoose"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["mongoose-paginate-v2", [
+        ["npm:1.4.1", {
+          "packageLocation": "./.yarn/cache/mongoose-paginate-v2-npm-1.4.1-1f29229579-8661103254.zip/node_modules/mongoose-paginate-v2/",
+          "packageDependencies": [
+            ["mongoose-paginate-v2", "npm:1.4.1"]
           ],
           "linkType": "HARD",
         }]
