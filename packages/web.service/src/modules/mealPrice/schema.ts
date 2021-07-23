@@ -1,8 +1,8 @@
 import { model, Schema } from 'mongoose';
 
+import { ServiceTypes } from '../comfortLevel';
 import { PersonClasses } from '../personType';
 import { SeasonTypes } from '../season';
-import { ServiceTypes } from '../type';
 
 export type MealPrice = {
   readonly personType: PersonClasses;

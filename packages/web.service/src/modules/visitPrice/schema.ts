@@ -3,7 +3,7 @@ import { model, Schema } from 'mongoose';
 import type { Location } from '../location';
 import type { PriceRaw } from '../price';
 
-//  TODO: add PersonTypes enum
+//  TODO: add PersonType enum
 enum PersonTypes {}
 
 //  TODO: add SeasonTypes enum
