@@ -5,7 +5,12 @@ import { StatusCodes } from 'http-status-codes';
 import { logger } from 'logger';
 import { handleValidationErrors } from 'services/handleValidationErrors';
 
-import { createUserAction, getUserByEmailAction, logoutUserAction } from './actions';
+import {
+  createUserAction,
+  getAllUsersAction,
+  getUserByEmailAction,
+  logoutUserAction,
+} from './actions';
 import { EmailAlreadyExistsError } from './errors';
 import type { UserDocument } from './schema';
 import { UserRoles } from './schema';
@@ -51,6 +56,15 @@ export const userRouter = Router()
         });
     }
   )
+  .get('/user', (req, res) => {
+    const { page, limit } = req.query;
+    getAllUsersAction(page, limit)
+      .then((users) => res.send(users))
+      .catch((err) => {
+        userLogger.error(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+      });
+  })
   .get(
     '/user/:email',
     param('email', 'Email is invalid').isEmail(),
