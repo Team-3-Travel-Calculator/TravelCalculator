@@ -7,7 +7,7 @@ type Client = {
   readonly client: string;
 };
 
-// TODO: add PersonTypes enum
+// TODO: add PersonType enum
 enum PersonTypes {}
 
 // TODO: add SeasonTypes enum
