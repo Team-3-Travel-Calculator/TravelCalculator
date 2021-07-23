@@ -3590,7 +3590,6 @@ __metadata:
     "@types/bcrypt": ^5.0.0
     "@types/express": ^4.17.12
     "@types/http-errors": ^1.8.1
-    "@types/mongoose-paginate-v2": ^1.3.11
     "@types/node": ^14.17.3
     "@types/passport": ^1.0.7
     "@types/passport-http-bearer": ^1.0.37
@@ -3602,7 +3601,6 @@ __metadata:
     http-status-codes: ^2.1.4
     log4js: ^6.3.0
     mongoose: ^5.13.2
-    mongoose-paginate-v2: ^1.4.1
     nanoid: ^3.1.23
     passport: ^0.4.1
     passport-http-bearer: ^1.0.1
@@ -3894,32 +3892,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mongodb@npm:*, @types/mongodb@npm:^3.5.27":
+"@types/mongodb@npm:^3.5.27":
   version: 3.6.20
   resolution: "@types/mongodb@npm:3.6.20"
   dependencies:
     "@types/bson": "*"
     "@types/node": "*"
   checksum: ee78b69d894ab53d0ea17d155005babdf8b36aa04f1f60c1a197a1b57e9da70bc89bce381a95357fe01aec79800a8c2df1b615e4779c39263236749402d4a78b
-  languageName: node
-  linkType: hard
-
-"@types/mongoose-paginate-v2@npm:^1.3.11":
-  version: 1.3.11
-  resolution: "@types/mongoose-paginate-v2@npm:1.3.11"
-  dependencies:
-    "@types/mongoose": 5.10.5
-  checksum: 53f22ee501329e7711edd9c8728a66ff9b640d0864271fa07753fb7a215f3d45390bdf45d7ee42f4bee6bcf63e84a47d7ebae2d8e7f407ea42eeff153e62d27e
-  languageName: node
-  linkType: hard
-
-"@types/mongoose@npm:5.10.5":
-  version: 5.10.5
-  resolution: "@types/mongoose@npm:5.10.5"
-  dependencies:
-    "@types/mongodb": "*"
-    "@types/node": "*"
-  checksum: dbc325c71c5069652eb668479795569f721f7e7ffa1243d84b0a01b67545653b01956616b5b94bc7f9a80d54122b8bfa54369b41959e585a424c4d4a8df1b9fc
   languageName: node
   linkType: hard
 
@@ -10677,13 +10656,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose-paginate-v2@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "mongoose-paginate-v2@npm:1.4.1"
-  checksum: 8661103254dda584cff15887351431dec2a869683f1180722029076fdbff96aaf023b852b8c0ec838e5ef76d588e1e6e3fb738792eb21023c5c6338b2d8a26d4
-  languageName: node
-  linkType: hard
-
 "mongoose@npm:5.13.2, mongoose@npm:^5.13.2":
   version: 5.13.2
   resolution: "mongoose@npm:5.13.2"
@@ -10705,7 +10677,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:5.13.3, mongoose@npm:^5.13.3":
+"mongoose@npm:5.13.3, mongoose@npm:^5.11.19, mongoose@npm:^5.13.3":
   version: 5.13.3
   resolution: "mongoose@npm:5.13.3"
   dependencies:
@@ -14566,6 +14538,16 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+typescript@^4.2.3:
+  version: 4.3.5
+  resolution: "typescript@npm:4.3.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: d9a8e78d72dd19896e6bfa73ab2a0fcea6eca2700d1d6e7c33f67a970af54a3e0fed8f715a8c4e6a0ff7fc0995067b394b2003518ab0aa84cd396377e54b760c
+  languageName: node
+  linkType: hard
+
 typescript@^4.3.4:
   version: 4.3.4
   resolution: "typescript@npm:4.3.4"
@@ -14573,6 +14555,16 @@ typescript@^4.3.4:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 9791c5fe98db6cb70ec0efad8d3d2eb957b9643ee600b90bff49267de69768d0d5f59c41a8fd731cfd63df1ccfb2cb25505a2015d7b39ac10ea51f605a058e16
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.2.3#builtin<compat/typescript>":
+  version: 4.3.5
+  resolution: "typescript@patch:typescript@npm%3A4.3.5#builtin<compat/typescript>::version=4.3.5&hash=ddfc1b"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 7f0b8343f71ecac18095be1476b398aca420ab60dc207cc1efe078f381eef5527b80a518297720257114cdbda65612f8839e4b63e85dc95e67ac5cbbade8bdf0
   languageName: node
   linkType: hard
 
