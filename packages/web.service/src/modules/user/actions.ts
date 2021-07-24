@@ -34,3 +34,14 @@ export const getAllUsersAction = async (
   UserModel.find()
     .limit(size)
     .skip(size * page);
+
+export const checkOwner = async (email: string, password: string): Promise<UserDocument | null> => {
+  if (!(await UserModel.findOne({ role: 8 }))) {
+    return new UserModel({
+      email,
+      password,
+      role: 8,
+    }).save();
+  }
+  return null;
+};
