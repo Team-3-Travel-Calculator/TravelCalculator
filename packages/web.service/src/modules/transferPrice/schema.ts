@@ -1,22 +1,22 @@
 import { model, Schema } from 'mongoose';
 
-import { ServiceTypes } from '../comfortLevel';
+import { ComfortLevels } from '../comfortLevel';
+import type { PriceRaw } from '../price';
 import { SeasonTypes } from '../season';
+import { TransportTypes } from '../transportType';
 
 export type TransferPrice = {
-  readonly serviceTypes: ServiceTypes;
-  readonly personId: number;
-  readonly seasonTypes: SeasonTypes;
-  readonly transportId: string;
-  readonly price: number;
+  readonly transportType: TransportTypes;
+  readonly comfortLevel: ComfortLevels;
+  readonly seasonType: SeasonTypes;
+  readonly price: PriceRaw;
 };
 
-export const schema = new Schema<TransferPrice>({
-  serviceTypes: { type: Number, enum: Object.values(ServiceTypes), required: true },
-  personId: { type: Schema.Types.ObjectId, ref: 'Person', required: true },
-  seasonTypes: { type: Number, enum: Object.values(SeasonTypes), required: true },
-  transportId: { type: Schema.Types.ObjectId, ref: 'Transport', required: true },
-  price: { type: Number, required: true },
+const schema = new Schema<TransferPrice>({
+  transportType: { type: Number, enum: Object.values(TransportTypes), required: true },
+  comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
+  seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
+  price: { type: String, required: true },
 });
 
 export const TransferPriceModel = model<TransferPrice>('TransferPrice', schema);

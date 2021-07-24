@@ -1,4 +1,4 @@
-export enum TransportClasses {
+export enum TransportTypes {
   Sedan = 1,
   Minivan = 2,
   Minibus = 3,

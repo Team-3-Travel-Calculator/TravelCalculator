@@ -1,20 +1,31 @@
 import { model, Schema } from 'mongoose';
 
-import { ServiceTypes } from '../comfortLevel';
+import type { Client } from '../client';
+import { ComfortLevels } from '../comfortLevel';
+import { PersonsNumbers } from '../personsNumber';
 import { SeasonTypes } from '../season';
+import type { TransportTypeCount } from '../transferTransportTypeNumber';
+import { TransportTypes } from '../transportType';
 
 export type Transfer = {
-  readonly serviceTypes: ServiceTypes;
-  readonly personId: number;
-  readonly seasonTypes: number;
-  readonly transportId: string;
+  readonly client: Client;
+  readonly transferDate: Date;
+  readonly comfortLevel: ComfortLevels;
+  readonly seasonType: SeasonTypes;
+  readonly personsNumber: PersonsNumbers;
+  readonly transportTypeCount: TransportTypeCount;
 };
 
-export const schema = new Schema<Transfer>({
-  serviceTypes: { type: Number, enum: Object.values(ServiceTypes), required: true },
-  personId: { type: Schema.Types.ObjectId, ref: 'Person', required: true },
-  seasonTypes: { type: Number, enum: Object.values(SeasonTypes), required: true },
-  transportId: { type: Schema.Types.ObjectId, ref: 'Transport', required: true },
+const schema = new Schema<Transfer>({
+  client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
+  transferDate: { type: Date, required: true },
+  comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
+  seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
+  personsNumber: { type: Number, enum: Object.values(PersonsNumbers), required: true },
+  transportTypeCount: {
+    type: { type: Number, enum: Object.values(TransportTypes), required: true },
+    number: { type: Number, required: true },
+  },
 });
 
 export const TransferModel = model<Transfer>('Transfer', schema);
