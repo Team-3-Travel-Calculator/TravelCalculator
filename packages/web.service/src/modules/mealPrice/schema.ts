@@ -1,21 +1,29 @@
 import { model, Schema } from 'mongoose';
 
-import { ServiceTypes } from '../comfortLevel';
-import { PersonClasses } from '../personType';
+import { ComfortLevels } from '../comfortLevel';
+import { PersonType } from '../personType';
+import type { PriceRaw } from '../price';
 import { SeasonTypes } from '../season';
 
+export enum MealTypes {
+  Lunch = 1,
+  Dinner = 2,
+}
+
 export type MealPrice = {
-  readonly personType: PersonClasses;
-  readonly seasonTypes: SeasonTypes;
-  readonly mealType: ServiceTypes;
-  readonly price: number;
+  readonly personType: PersonType;
+  readonly seasonType: SeasonTypes;
+  readonly mealType: MealTypes;
+  readonly comfortLevel: ComfortLevels;
+  readonly price: PriceRaw;
 };
 
 export const schema = new Schema<MealPrice>({
-  personType: { type: Number, enum: Object.values(PersonClasses), required: true },
+  personType: { type: Number, enum: Object.values(PersonType), required: true },
   seasonTypes: { type: Number, enum: Object.values(SeasonTypes), required: true },
-  mealType: { type: Number, enum: Object.values(ServiceTypes), required: true },
-  price: { type: Number, required: true },
+  mealType: { type: Number, enum: Object.values(MealTypes), required: true },
+  comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
+  price: { type: String, required: true },
 });
 
 export const MealPriceModel = model<MealPrice>('MealPrice', schema);
