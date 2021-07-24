@@ -1,14 +1,10 @@
 import { model, Schema } from 'mongoose';
 
 import { ComfortLevels } from '../comfortLevel';
+import { MealTypes } from '../mealType';
 import { PersonType } from '../personType';
 import type { PriceRaw } from '../price';
 import { SeasonTypes } from '../season';
-
-export enum MealTypes {
-  Lunch = 1,
-  Dinner = 2,
-}
 
 export type MealPrice = {
   readonly personType: PersonType;
