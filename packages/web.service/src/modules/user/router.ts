@@ -1,11 +1,16 @@
 import { Router } from 'express';
-import { body, param } from 'express-validator';
+import { body, param, query } from 'express-validator';
 import createError from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
 import { logger } from 'logger';
 import { handleValidationErrors } from 'services/handleValidationErrors';
 
-import { createUserAction, getUserByEmailAction, logoutUserAction } from './actions';
+import {
+  createUserAction,
+  getAllUsersAction,
+  getUserByEmailAction,
+  logoutUserAction,
+} from './actions';
 import { EmailAlreadyExistsError } from './errors';
 import type { UserDocument } from './schema';
 import { UserRoles } from './schema';
@@ -48,6 +53,21 @@ export const userRouter = Router()
             userLogger.error(err);
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
           }
+        });
+    }
+  )
+  .get(
+    '/user',
+    query('size', 'size must be at 1 to 30 ').isInt({ gt: 0, lt: 31 }),
+    query('page', 'page not found').toInt().notEmpty(),
+    handleValidationErrors,
+    (req, res) => {
+      const { page, size } = req.query;
+      getAllUsersAction(page, size)
+        .then((users) => res.send(users.map(({ email, role }) => ({ email, role }))))
+        .catch((err) => {
+          userLogger.error(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
         });
     }
   )
