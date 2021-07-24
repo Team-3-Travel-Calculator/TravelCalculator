@@ -1,29 +1,37 @@
 import { model, Schema } from 'mongoose';
 
-import { PersonClasses } from '../personType';
+import type { Client } from '../client';
+import { ComfortLevels } from '../comfortLevel';
+import { MealTypes } from '../mealPrice';
+import { PersonType } from '../personType';
+import { SeasonTypes } from '../season';
 
-export type Person = {
-  readonly personTypes: PersonClasses;
-  readonly personQnt: number;
+export type MealPersonTypeCount = {
+  readonly personType: PersonType;
+  readonly personTypeNumber: number;
+  readonly mealType: MealTypes;
 };
 
 export type Meal = {
-  readonly mealPrice: number;
-  readonly person: readonly Person[];
-  readonly discount?: number;
-  readonly price: number;
+  readonly client: Client;
+  readonly mealDate: Date;
+  readonly personsMealCount: readonly MealPersonTypeCount[];
+  readonly seasonType: SeasonTypes;
+  readonly comfortLevel: ComfortLevels;
 };
 
 export const schema = new Schema<Meal>({
-  mealPrice: { type: Schema.Types.ObjectId, ref: 'MealPrice', required: true },
-  person: [
+  client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
+  mealDate: { type: Date, required: true },
+  personsMealCount: [
     {
-      personTypes: { type: Number, enum: Object.values(PersonClasses), required: true },
-      personQnt: { type: Number, required: true },
+      personType: { type: Number, enum: Object.values(PersonType), required: true },
+      personTypeNumber: { type: Number, required: true },
+      mealType: { type: Number, enum: Object.values(MealTypes), required: true },
     },
   ],
-  discount: { type: Number },
-  price: { type: Number, required: true },
+  seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
+  comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
 });
 
 export const MealModel = model<Meal>('Meal', schema);
