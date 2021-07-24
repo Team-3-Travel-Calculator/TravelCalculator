@@ -1,12 +1,9 @@
 import { model, Schema } from 'mongoose';
 
+import type { Client } from '../client';
+import { ComfortLevels } from '../comfortLevel';
 import type { PriceRaw } from '../price';
-
-// TODO: add SeasonTypes enum
-enum SeasonTypes {}
-
-// TODO: add ComfortLevels enum
-enum ComfortLevels {}
+import { SeasonTypes } from '../season';
 
 export enum GuideGroupSizes {
   Small = 5,
@@ -41,6 +38,8 @@ export type GuideSkiInstructor = {
 export type GuideType = GuideInstructor | GuideSkiInstructor | GuideTour | GuideTransfer;
 
 export type Guide = {
+  readonly client: Client;
+  readonly workDate: Date;
   readonly guideType: GuideType;
   readonly season: SeasonTypes;
   readonly comfortLevel: ComfortLevels;
@@ -50,6 +49,8 @@ export type Guide = {
 };
 
 const schema = new Schema<Guide>({
+  client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
+  workDate: { type: Date, required: true },
   guideType: { type: Number, enum: Object.values(GuideTypes), required: true },
   season: { type: Number, enum: Object.values(SeasonTypes), required: true },
   comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
