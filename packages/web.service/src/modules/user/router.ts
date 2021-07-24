@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { body, param } from 'express-validator';
+import { body, param, query } from 'express-validator';
 import createError from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
 import { logger } from 'logger';
@@ -56,15 +56,21 @@ export const userRouter = Router()
         });
     }
   )
-  .get('/user', (req, res) => {
-    const { page, limit } = req.query;
-    getAllUsersAction(page, limit)
-      .then((users) => res.send(users))
-      .catch((err) => {
-        userLogger.error(err);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
-      });
-  })
+  .get(
+    '/user',
+    query('size', 'size must be at 1 to 30 ').isInt({ gt: 0, lt: 31 }),
+    query('page', 'page not found').toInt().notEmpty(),
+    handleValidationErrors,
+    (req, res) => {
+      const { page, size } = req.query;
+      getAllUsersAction(page, size)
+        .then((users) => res.send(users.map(({ email, role }) => ({ email, role }))))
+        .catch((err) => {
+          userLogger.error(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+        });
+    }
+  )
   .get(
     '/user/:email',
     param('email', 'Email is invalid').isEmail(),
