@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 
 import type { Client } from '../client';
 import { ComfortLevels } from '../comfortLevel';
-import { MealTypes } from '../mealPrice';
+import { MealTypes } from '../mealType';
 import { PersonType } from '../personType';
 import { SeasonTypes } from '../season';
 
@@ -18,6 +18,7 @@ export type Meal = {
   readonly personsMealCount: readonly MealPersonTypeCount[];
   readonly seasonType: SeasonTypes;
   readonly comfortLevel: ComfortLevels;
+  readonly totalMealSpentTime: string;
 };
 
 export const schema = new Schema<Meal>({
@@ -32,6 +33,7 @@ export const schema = new Schema<Meal>({
   ],
   seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
   comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
+  totalMealSpentTime: { type: String, required: true },
 });
 
 export const MealModel = model<Meal>('Meal', schema);
