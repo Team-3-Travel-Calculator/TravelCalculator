@@ -58,7 +58,7 @@ export const userRouter = Router()
   )
   .get(
     '/user',
-    query('size', 'size must be at 1 to 30 ').isInt({ gt: 0, lt: 31 }),
+    query('size', 'size must be at 1 to 30 ').toInt().isInt({ gt: 0, lt: 31 }),
     query('page', 'page not found').toInt().notEmpty(),
     handleValidationErrors,
     (req, res) => {
