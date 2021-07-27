@@ -63,7 +63,7 @@ export const userRouter = Router()
     handleValidationErrors,
     (req, res) => {
       const { page, size } = req.query;
-      getAllUsersAction(page, size)
+      getAllUsersAction(Number(page), Number(size))
         .then((users) => res.send(users.map(({ email, role }) => ({ email, role }))))
         .catch((err) => {
           userLogger.error(err);
