@@ -1,8 +1,8 @@
 import { genSaltSync, hash } from 'bcrypt';
 
 import { EmailAlreadyExistsError } from './errors';
-import type { UserDocument, UserRoles } from './schema';
-import { UserModel } from './schema';
+import type { UserDocument } from './schema';
+import { UserModel, UserRoles } from './schema';
 
 const salt = genSaltSync();
 
@@ -34,3 +34,11 @@ export const getAllUsersAction = async (
   UserModel.find()
     .limit(size)
     .skip(size * page);
+
+export const getOrCreateOwnerAction = async (
+  email: string,
+  password: string
+): Promise<UserDocument> => {
+  const owner = await UserModel.findOne({ role: UserRoles.Owner });
+  return owner ?? createUserAction(email, password, UserRoles.Owner);
+};

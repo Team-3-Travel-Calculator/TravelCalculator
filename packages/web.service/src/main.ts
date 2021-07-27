@@ -7,7 +7,7 @@ import { resolve } from 'path';
 
 import { databaseConnect } from './database';
 import { authRouter } from './modules/auth';
-import { getUserByTokenAction, userRouter } from './modules/user';
+import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
 import { isProduction } from './services/isProduction';
 
 const passportStrategy = new Strategy((token, done) => {
@@ -28,6 +28,13 @@ export const main = async (): Promise<void> => {
   await databaseConnect();
 
   passport.use(passportStrategy);
+
+  if (!process.env.OWNER_EMAIL || !process.env.OWNER_PASS) {
+    mainLogger.fatal('owner credentials were not given');
+    return;
+  }
+
+  await getOrCreateOwnerAction(process.env.OWNER_EMAIL, process.env.OWNER_PASS);
 
   express()
     .use(json())
