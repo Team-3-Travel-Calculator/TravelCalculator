@@ -1,3 +1,4 @@
+import cors from 'cors';
 import { config } from 'dotenv';
 import express, { json } from 'express';
 import { logger } from 'logger';
@@ -30,6 +31,7 @@ export const main = async (): Promise<void> => {
   passport.use(passportStrategy);
 
   express()
+    .use(cors())
     .use(json())
     .use(authRouter)
     .use(passport.authenticate('bearer', { session: false }))
