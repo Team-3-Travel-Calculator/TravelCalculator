@@ -4,11 +4,10 @@ import { logger } from 'logger';
 import passport from 'passport';
 import { Strategy } from 'passport-http-bearer';
 import { resolve } from 'path';
-import { env } from 'process';
 
 import { databaseConnect } from './database';
 import { authRouter } from './modules/auth';
-import { checkOwner, getUserByTokenAction, userRouter } from './modules/user';
+import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
 import { isProduction } from './services/isProduction';
 
 const passportStrategy = new Strategy((token, done) => {
@@ -30,14 +29,19 @@ export const main = async (): Promise<void> => {
 
   passport.use(passportStrategy);
 
-  await checkOwner(env.OWNER_EMAIL, env.OWNER_PASS);
+  if (!process.env.OWNER_EMAIL || !process.env.OWNER_PASS) {
+    mainLogger.fatal('owner credentials were not given');
+    return;
+  }
+
+  await getOrCreateOwnerAction(process.env.OWNER_EMAIL, process.env.OWNER_PASS);
 
   express()
     .use(json())
     .use(authRouter)
     .use(passport.authenticate('bearer', { session: false }))
     .use(userRouter)
-    .listen(env.PORT, () => {
-      mainLogger.info(`successfully started application on: ${env.PORT}`);
+    .listen(process.env.PORT, () => {
+      mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });
 };
