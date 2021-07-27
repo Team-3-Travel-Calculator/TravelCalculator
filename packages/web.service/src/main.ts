@@ -1,3 +1,4 @@
+import cors from 'cors';
 import { config } from 'dotenv';
 import express, { json } from 'express';
 import { logger } from 'logger';
@@ -37,6 +38,7 @@ export const main = async (): Promise<void> => {
   await getOrCreateOwnerAction(process.env.OWNER_EMAIL, process.env.OWNER_PASS);
 
   express()
+    .use(cors())
     .use(json())
     .use(authRouter)
     .use(passport.authenticate('bearer', { session: false }))
