@@ -1,3 +1,3 @@
-import { typescript } from '@azimutlabs/rollup-config-typescript';
+import { babel } from '@azimutlabs/rollup-config-babel';
 
-export default typescript('cjs');
+export default babel('cjs');
