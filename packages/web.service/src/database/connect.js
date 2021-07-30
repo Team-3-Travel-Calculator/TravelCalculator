@@ -1,7 +1,6 @@
-import type { Mongoose } from 'mongoose';
 import { connect } from 'mongoose';
 
-export const databaseConnect = async (): Promise<Mongoose> =>
+export const databaseConnect = () =>
   connect(process.env.DB_URL ?? '', {
     dbName: process.env.DB_NAME,
     user: process.env.DB_USER,

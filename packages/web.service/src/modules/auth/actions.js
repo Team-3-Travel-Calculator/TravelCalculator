@@ -2,9 +2,9 @@ import { compare } from 'bcrypt';
 import { nanoid } from 'nanoid';
 
 import { getUserByEmailAction } from '../user';
-import { IncorrectPasswordError, UserNotFoundError } from './errors';
+import { IncorrectPasswordError, UserNotFoundError } from './errors.ts';
 
-export const loginUserAction = async (email: string, password: string): Promise<string> => {
+export const loginUserAction = async (email, password) => {
   const maybeUser = await getUserByEmailAction(email);
   if (!maybeUser) {
     return Promise.reject(new UserNotFoundError(`User with email '${email}' does not exists`));
