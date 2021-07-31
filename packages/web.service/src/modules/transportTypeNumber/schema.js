@@ -3,21 +3,10 @@ import { model, Schema } from 'mongoose';
 import { ComfortLevels } from '../comfortLevel';
 import { PersonsNumbers } from '../personsNumber';
 import { SeasonTypes } from '../season';
-import { TransportTypes } from '../transportType';
+import { TransportCalculationTypes, TransportTypes } from '../transportType';
 
-export type TransportTypeCount = {
-  readonly type: TransportTypes;
-  readonly number: number;
-};
-
-export type TransferTransportTypeNumber = {
-  readonly personsNumber: PersonsNumbers;
-  readonly seasonType: SeasonTypes;
-  readonly comfortLevel: ComfortLevels;
-  readonly transportTypeCount: readonly TransportTypeCount[];
-};
-
-const schema = new Schema<TransferTransportTypeNumber>({
+const TransportTypeNumberSchema = new Schema({
+  calculationType: { type: Number, enum: Object.values(TransportCalculationTypes), required: true },
   personsNumber: { type: Number, enum: Object.values(PersonsNumbers), required: true },
   seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
   comfortLevel: { type: Number, enum: Object.values(ComfortLevels), required: true },
@@ -29,7 +18,4 @@ const schema = new Schema<TransferTransportTypeNumber>({
   ],
 });
 
-export const TransferTransportTypeNumberModel = model<TransferTransportTypeNumber>(
-  'TransferTransportTypeNumber',
-  schema
-);
+export const TransportTypeNumberModel = model('TransportTypeNumber', TransportTypeNumberSchema);
