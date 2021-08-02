@@ -1,13 +1,9 @@
 import { model, Schema } from 'mongoose';
 
+import { ComfortLevels } from '../comfortLevel';
 import { HotelTypes } from '../hotelType';
-
-// TODO: add correct imports for ComfortLevels, PersonsNumbers & SeasonTypes
-const SeasonTypes = {};
-
-const ComfortLevels = {};
-
-const PersonsNumbers = {};
+import { PersonsNumbers } from '../personsNumber';
+import { SeasonTypes } from '../season';
 
 const HotelSchema = new Schema({
   client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
