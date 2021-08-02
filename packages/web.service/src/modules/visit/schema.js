@@ -1,8 +1,7 @@
 import { model, Schema } from 'mongoose';
 
-// TODO: add correct imports with PersonTypes & SeasonTypes
-const PersonTypes = {};
-const SeasonTypes = {};
+import { PersonTypes } from '../personType';
+import { SeasonTypes } from '../season';
 
 const VisitSchema = new Schema({
   client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
