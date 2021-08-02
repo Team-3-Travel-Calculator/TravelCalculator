@@ -1,11 +1,8 @@
 import { model, Schema } from 'mongoose';
 
+import { ComfortLevels } from '../comfortLevel';
 import { HotelTypes, RoomTypes } from '../hotelType';
-
-// TODO: add correct imports for ComfortLevels & SeasonTypes
-const SeasonTypes = {};
-
-const ComfortLevels = {};
+import { SeasonTypes } from '../season';
 
 const HotelPriceSchema = new Schema({
   hotelType: { type: Number, enum: Object.values(HotelTypes), required: true },
