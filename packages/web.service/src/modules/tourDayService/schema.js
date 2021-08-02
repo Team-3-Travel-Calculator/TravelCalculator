@@ -1,13 +1,11 @@
 import { model, Schema } from 'mongoose';
 
+import { ComfortLevels } from '../comfortLevel';
+import { GuideTypes } from '../guideTypes';
+import { HotelTypes } from '../hotelType';
+import { MealTypes } from '../mealType';
 import { ServiceTypes } from '../service';
-
-// TODO: add correct imports of HotelTypes, MealTypes, TransportTypes,ComfortLevels, GuideTypes
-const HotelTypes = {};
-const MealTypes = {};
-const TransportTypes = {};
-const ComfortLevels = {};
-const GuideTypes = {};
+import { TransportTypes } from '../transportType';
 
 const discriminator = {
   discriminatorKey: 'type',
@@ -92,7 +90,6 @@ const ServiceVisitSchema = new Schema(
   {
     location: { type: Schema.Types.ObjectId, ref: 'Location', required: true },
     description: { type: String, required: true },
-    locationPhoto: { type: String, required: true },
   },
   discriminator
 );
