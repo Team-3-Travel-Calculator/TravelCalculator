@@ -604,7 +604,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@zerollup/ts-transform-paths", "virtual:ca6a8dbdb7c7b500b868f211255fee20d7bc21add297e20cf4970b66b89879cf729e9cb0c93fb5962e7282fcf6729e353a3dcde0a46f50a0d467bb1d9c070b45#npm:1.7.18"],
             ["rollup", "npm:2.52.3"],
             ["tsconfig", "npm:7.0.0"],
-            ["tslib", "npm:2.3.0"],
+            ["tslib", null],
             ["typescript", "patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"]
           ],
           "packagePeers": [
@@ -5539,7 +5539,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/typescript", null],
             ["resolve", "patch:resolve@npm%3A1.20.0#builtin<compat/resolve>::version=1.20.0&hash=3388aa"],
             ["rollup", "npm:2.52.3"],
-            ["tslib", "npm:2.3.0"],
+            ["tslib", null],
             ["typescript", "patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"]
           ],
           "packagePeers": [
@@ -5677,12 +5677,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.14.8"],
             ["@babel/runtime", "npm:7.14.8"],
             ["@types/bcrypt", "npm:5.0.0"],
+            ["@types/cors", "npm:2.8.12"],
             ["@types/express", "npm:4.17.12"],
             ["@types/http-errors", "npm:1.8.1"],
             ["@types/node", "npm:14.17.3"],
             ["@types/passport", "npm:1.0.7"],
             ["@types/passport-http-bearer", "npm:1.0.37"],
             ["bcrypt", "npm:5.0.1"],
+            ["cors", "npm:2.8.5"],
             ["dotenv", "npm:10.0.0"],
             ["express", "npm:4.17.1"],
             ["express-validator", "npm:6.12.0"],
@@ -5694,7 +5696,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["passport", "npm:0.4.1"],
             ["passport-http-bearer", "npm:1.0.1"],
             ["rollup", "npm:2.52.3"],
-            ["tslib", "npm:2.3.0"],
             ["typescript", "patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"]
           ],
           "linkType": "SOFT",
@@ -5823,6 +5824,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.13"],
             ["@types/keygrip", "npm:1.0.2"],
             ["@types/node", "npm:15.12.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/cors", [
+        ["npm:2.8.12", {
+          "packageLocation": "./.yarn/cache/@types-cors-npm-2.8.12-ff52e8e514-f3b62196df.zip/node_modules/@types/cors/",
+          "packageDependencies": [
+            ["@types/cors", "npm:2.8.12"]
           ],
           "linkType": "HARD",
         }]
@@ -8474,6 +8484,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/core-util-is-npm-1.0.2-9fc2b94dc3-089015ee3c.zip/node_modules/core-util-is/",
           "packageDependencies": [
             ["core-util-is", "npm:1.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["cors", [
+        ["npm:2.8.5", {
+          "packageLocation": "./.yarn/cache/cors-npm-2.8.5-c9935a2d12-c83e88c154.zip/node_modules/cors/",
+          "packageDependencies": [
+            ["cors", "npm:2.8.5"],
+            ["object-assign", "npm:4.1.1"],
+            ["vary", "npm:1.1.2"]
           ],
           "linkType": "HARD",
         }]
