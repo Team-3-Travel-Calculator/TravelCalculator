@@ -1,7 +1,5 @@
 import { model, Schema } from 'mongoose';
 
-// TODO: delete price schema after other schemas merge
-
 const OfferSchema = new Schema({
   orderId: { type: Number, required: true },
   client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
