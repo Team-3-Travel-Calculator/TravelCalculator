@@ -2,11 +2,11 @@ import { Router } from 'express';
 import { body } from 'express-validator';
 import createError from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
-import { logger } from 'logger';
-import { handleValidationErrors } from 'services/handleValidationErrors';
 
+import { logger } from '../../logger';
+import { handleValidationErrors } from '../../services/handleValidationErrors';
 import { loginUserAction } from './actions';
-import { IncorrectPasswordError, UserNotFoundError } from './errors';
+import { IncorrectPasswordError, UserNotFoundError } from './errors.ts';
 
 const authLogger = logger.getLogger('router.auth');
 
@@ -17,7 +17,7 @@ export const authRouter = Router().post(
   handleValidationErrors,
   async (req, res) => {
     const { email, password } = req.body;
-    return loginUserAction(email, password)
+    await loginUserAction(email, password)
       .then((token) => res.json(token))
       .catch((err) => {
         if (err instanceof UserNotFoundError) {

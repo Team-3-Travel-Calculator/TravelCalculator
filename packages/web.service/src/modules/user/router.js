@@ -2,17 +2,16 @@ import { Router } from 'express';
 import { body, param, query } from 'express-validator';
 import createError from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
-import { logger } from 'logger';
-import { handleValidationErrors } from 'services/handleValidationErrors';
 
+import { logger } from '../../logger';
+import { handleValidationErrors } from '../../services/handleValidationErrors';
 import {
   createUserAction,
   getAllUsersAction,
   getUserByEmailAction,
   logoutUserAction,
 } from './actions';
-import { EmailAlreadyExistsError } from './errors';
-import type { UserDocument } from './schema';
+import { EmailAlreadyExistsError } from './errors.ts';
 import { UserRoles } from './schema';
 
 const userLogger = logger.getLogger('router.user');
@@ -21,7 +20,7 @@ const allowedRoles = [UserRoles.Admin, UserRoles.Manager];
 
 export const userRouter = Router()
   .post('/user/logout', (req, res) => {
-    const { id } = req.user as UserDocument;
+    const { id } = req.user;
     logoutUserAction(id)
       .then(() => {
         res.send();
@@ -41,7 +40,7 @@ export const userRouter = Router()
     handleValidationErrors,
     async (req, res) => {
       const { email, password, role } = req.body;
-      return createUserAction(email, password, role)
+      await createUserAction(email, password, role)
         .then((user) => {
           userLogger.info('created new user:', user.email);
           res.status(StatusCodes.CREATED).send();
@@ -77,7 +76,7 @@ export const userRouter = Router()
     handleValidationErrors,
     async (req, res) => {
       const { email } = req.params;
-      return getUserByEmailAction(email)
+      await getUserByEmailAction(email)
         .then((user) => {
           if (user) res.send({ email: user.email, role: user.role });
           else res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound());
