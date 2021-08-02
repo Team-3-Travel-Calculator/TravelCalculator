@@ -1,13 +1,9 @@
 import { model, Schema } from 'mongoose';
 
+import { ComfortLevels } from '../comfortLevel';
 import { discriminatorKey } from '../guidePrice';
 import { GuideGroupSizes, GuideTypes } from '../guideTypes';
-
-// TODO: add correct imports of ComfortLevels & SeasonTypes
-
-const ComfortLevels = {};
-
-const SeasonTypes = {};
+import { SeasonTypes } from '../season';
 
 const GuideSchema = new Schema(
   {
