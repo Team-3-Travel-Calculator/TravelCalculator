@@ -8,6 +8,7 @@ import { resolve } from 'path';
 import { databaseConnect } from './database';
 import { logger } from './logger';
 import { authRouter } from './modules/auth';
+import { clientRouter } from './modules/client/router';
 import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
 import { isProduction } from './services/isProduction';
 
@@ -43,6 +44,7 @@ export const main = async () => {
     .use(authRouter)
     .use(passport.authenticate('bearer', { session: false }))
     .use(userRouter)
+    .use(clientRouter)
     .listen(process.env.PORT, () => {
       mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });
