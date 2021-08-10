@@ -8,9 +8,11 @@ import { resolve } from 'path';
 import { databaseConnect } from './database';
 import { logger } from './logger';
 import { authRouter } from './modules/auth';
-import { clientRouter } from './modules/client/router';
+import { clientRouter } from './modules/client';
 import { hotelRouter } from './modules/hotel';
 import { hotelPriceRouter } from './modules/hotelPrice';
+import { mealRouter } from './modules/meal';
+import { mealPriceRouter } from './modules/mealPrice';
 import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
 import { isProduction } from './services/isProduction';
 
@@ -47,6 +49,8 @@ export const main = async () => {
     .use(passport.authenticate('bearer', { session: false }))
     .use(userRouter)
     .use(clientRouter)
+    .use(mealPriceRouter)
+    .use(mealRouter)
     .use(hotelPriceRouter)
     .use(hotelRouter)
     .listen(process.env.PORT, () => {

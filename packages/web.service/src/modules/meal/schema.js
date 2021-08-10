@@ -5,8 +5,9 @@ import { MealTypes } from '../mealType';
 import { PersonTypes } from '../personType';
 import { SeasonTypes } from '../season';
 
+// TODO: Add Client field into schema after merging its module
+
 const MealSchema = new Schema({
-  client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
   mealDate: { type: Date, required: true },
   personsMealCount: [
     {

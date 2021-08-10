@@ -7,7 +7,7 @@ import { SeasonTypes } from '../season';
 
 const MealPriceSchema = new Schema({
   personType: { type: Number, enum: Object.values(PersonTypes), required: true },
-  seasonTypes: { type: Number, enum: Object.values(SeasonTypes), required: true },
+  seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
   mealType: {
     type: Number,
     enum: Object.values(MealTypes).map((type) => type.code),
