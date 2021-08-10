@@ -62,18 +62,7 @@ export const clientRouter = Router()
   )
   .get('/client', handleValidationErrors, (req, res) => {
     getAllClientsAction()
-      .then((clients) =>
-        res.send(
-          clients.map(({ type, email, country, fullName, companyName, phone, language }) => ({
-            type,
-            email,
-            country,
-            name: fullName || companyName,
-            phone,
-            language,
-          }))
-        )
-      )
+      .then((clients) => res.send(clients))
       .catch((err) => {
         clientLogger.error(err);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
@@ -87,15 +76,7 @@ export const clientRouter = Router()
       const { id } = req.params;
       await getClientByIdAction(id)
         .then((client) => {
-          if (client)
-            res.send({
-              type: client.type,
-              email: client.email,
-              country: client.country,
-              name: client.fullName || client.companyName,
-              phone: client.phone,
-              language: client.language,
-            });
+          if (client) res.send(client);
           else res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound());
         })
         .catch((err) => {
