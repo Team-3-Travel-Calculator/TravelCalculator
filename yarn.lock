@@ -3753,6 +3753,7 @@ __metadata:
     bcrypt: ^5.0.1
     cors: ^2.8.5
     dotenv: ^10.0.0
+    exact-math: ^2.2.3
     express: ^4.17.1
     express-validator: ^6.12.0
     http-errors: ^1.8.0
@@ -7324,6 +7325,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"exact-math@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "exact-math@npm:2.2.3"
+  dependencies:
+    move-on: ^2.1.9
+    of-type: ^3.0.4
+  checksum: 46387a6e26ad85364b7e31ef0875ad56d85f9256ef3f4b6ab1759fa2787791e5b7d95690dd390a1ec6c45fab5d36543b80391aa0f68a417b75aab860c4cdffb0
+  languageName: node
+  linkType: hard
+
 "execa@npm:^5.0.0":
   version: 5.1.1
   resolution: "execa@npm:5.1.1"
@@ -10872,6 +10883,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"move-on@npm:^2.1.9":
+  version: 2.1.9
+  resolution: "move-on@npm:2.1.9"
+  dependencies:
+    of-type: ^3.0.3
+    typeof-arguments: ^5.1.2
+  checksum: 8d4250e5d888e80672ff65095173b16c0576b884c9a5c17602c94b667cb54875808920928bd190b27229dc35dd3c2e2551b7dac1fec79f3093176406d809455a
+  languageName: node
+  linkType: hard
+
 "mpath@npm:0.8.3":
   version: 0.8.3
   resolution: "mpath@npm:0.8.3"
@@ -11526,6 +11547,13 @@ __metadata:
     define-properties: ^1.1.3
     es-abstract: ^1.18.2
   checksum: c7d8435611d566616e2dd4b85a71072715b7b049c637b9253313517754baef3d9fd1d0df0a8bd7980f2800efbdcb89832ca4af8aa4b949ca0fe369d0d773d48c
+  languageName: node
+  linkType: hard
+
+"of-type@npm:^3.0.3, of-type@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "of-type@npm:3.0.4"
+  checksum: 6ef5efeb92efdf6b5010414e14f45e8a22d46ff83ec56f85d442c0361cdd23c81f71f5984ad4ec80f69acccaddc0bb63f42d68de5b7495b3334fd55139bedf29
   languageName: node
   linkType: hard
 
@@ -14709,6 +14737,15 @@ resolve@^2.0.0-next.3:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: c9ef0176aaf32593514c31e5c6edc1db970847aff6e1f0a0570a6ac0cc996335792f394c2fcec59cc76691d22a01888ea073a2f3c6930cfcf7c519addf4e2ad7
+  languageName: node
+  linkType: hard
+
+"typeof-arguments@npm:^5.1.2":
+  version: 5.1.3
+  resolution: "typeof-arguments@npm:5.1.3"
+  dependencies:
+    of-type: ^3.0.3
+  checksum: 21865c6703e2f839f8bbc8e7de18e93329aa4ffc614215895616a7ec505932e2d8ef033c97468fe5e40124b3da8013e2ad5b10b268097035e0bf7c21b55a3bba
   languageName: node
   linkType: hard
 

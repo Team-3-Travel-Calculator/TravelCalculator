@@ -9,6 +9,8 @@ import { databaseConnect } from './database';
 import { logger } from './logger';
 import { authRouter } from './modules/auth';
 import { clientRouter } from './modules/client/router';
+import { hotelRouter } from './modules/hotel';
+import { hotelPriceRouter } from './modules/hotelPrice';
 import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
 import { isProduction } from './services/isProduction';
 
@@ -45,6 +47,8 @@ export const main = async () => {
     .use(passport.authenticate('bearer', { session: false }))
     .use(userRouter)
     .use(clientRouter)
+    .use(hotelPriceRouter)
+    .use(hotelRouter)
     .listen(process.env.PORT, () => {
       mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });
