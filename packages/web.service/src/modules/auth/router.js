@@ -18,7 +18,7 @@ export const authRouter = Router().post(
   async (req, res) => {
     const { email, password } = req.body;
     await loginUserAction(email, password)
-      .then((token) => res.json(token))
+      .then((token) => res.send({ user: { token } }))
       .catch((err) => {
         if (err instanceof UserNotFoundError) {
           res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound(err.message));
