@@ -3757,6 +3757,8 @@ __metadata:
     express-validator: ^6.12.0
     http-errors: ^1.8.0
     http-status-codes: ^2.1.4
+    i18n-iso-countries: ^6.8.0
+    iso-639-1: ^2.1.9
     log4js: ^6.3.0
     mongoose: ^5.13.2
     nanoid: ^3.1.23
@@ -6569,6 +6571,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"diacritics@npm:1.3.0":
+  version: 1.3.0
+  resolution: "diacritics@npm:1.3.0"
+  checksum: 89191c856f1a95966992fc7158bc121c06f9b19ef2d20b7beb60818e6cb10058d61d11a547c70ee421664b023d1c86507d8f09f51f393469bdcec46338d05c0c
+  languageName: node
+  linkType: hard
+
 "didyoumean@npm:^1.2.1":
   version: 1.2.2
   resolution: "didyoumean@npm:1.2.2"
@@ -8366,6 +8375,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18n-iso-countries@npm:^6.8.0":
+  version: 6.8.0
+  resolution: "i18n-iso-countries@npm:6.8.0"
+  dependencies:
+    diacritics: 1.3.0
+  checksum: 239b3da684aacdf75d4a6849f6e801f47d045c2eaa28075d4ef0a028f903a8f21651f1028b35eaab7c528394b04a2e630c6839e881a7dbdc2a4f034775307cc1
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24, iconv-lite@npm:^0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -9002,6 +9020,13 @@ __metadata:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 7b437980bb77881a146fba85cfbdf01edc2b148673e9c2722a1e49661fea73adf524430a80fdbfb8ce9f60d43224e682c657c45030482bd39e0c488fc29b4afe
+  languageName: node
+  linkType: hard
+
+"iso-639-1@npm:^2.1.9":
+  version: 2.1.9
+  resolution: "iso-639-1@npm:2.1.9"
+  checksum: 2b8154eb4b9d2446b150aea2eb691d11a9bbf23aac71702ac5d9de9f80854564c16ff922f432143187c496e395267073a01de611d94c20c4547d63edd417f3bf
   languageName: node
   linkType: hard
 

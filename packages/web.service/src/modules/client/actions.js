@@ -9,14 +9,6 @@ export const getClientByNameAction = async (name) => {
   return result[0] || result[1];
 };
 
-export const getClientByIdAction = async (id) => {
-  const result = await Promise.all([
-    ClientIndividualModel.findById(id),
-    ClientCompanyModel.findById(id),
-  ]);
-  return result[0] || result[1];
-};
-
 export const createClientAction = async (client) => {
   if (await getClientByNameAction(client.name)) {
     return Promise.reject(new ClientAlreadyExistsError());
@@ -43,6 +35,14 @@ export const createClientAction = async (client) => {
 export const getAllClientsAction = async () => {
   const result = await Promise.all([ClientIndividualModel.find(), ClientCompanyModel.find()]);
   return result[0].concat(result[1]);
+};
+
+export const getClientByIdAction = async (id) => {
+  const result = await Promise.all([
+    ClientIndividualModel.findById(id),
+    ClientCompanyModel.findById(id),
+  ]);
+  return result[0] || result[1];
 };
 
 export const updateClientDataAction = async (id, client) => {
@@ -76,10 +76,8 @@ export const updateClientDataAction = async (id, client) => {
   return clientIndividual || clientCompany;
 };
 
-export const deleteClientAction = async (id) => {
-  const result = await Promise.all([
+export const deleteClientAction = (id) =>
+  Promise.all([
     ClientIndividualModel.findByIdAndDelete(id),
     ClientCompanyModel.findByIdAndDelete(id),
   ]);
-  return result[0] || result[1];
-};

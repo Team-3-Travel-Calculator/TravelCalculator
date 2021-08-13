@@ -5690,6 +5690,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express-validator", "npm:6.12.0"],
             ["http-errors", "npm:1.8.0"],
             ["http-status-codes", "npm:2.1.4"],
+            ["i18n-iso-countries", "npm:6.8.0"],
+            ["iso-639-1", "npm:2.1.9"],
             ["log4js", "npm:6.3.0"],
             ["mongoose", "npm:5.13.2"],
             ["nanoid", "npm:3.1.23"],
@@ -9110,6 +9112,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["diacritics", [
+        ["npm:1.3.0", {
+          "packageLocation": "./.yarn/cache/diacritics-npm-1.3.0-c93caecb7f-89191c856f.zip/node_modules/diacritics/",
+          "packageDependencies": [
+            ["diacritics", "npm:1.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["didyoumean", [
         ["npm:1.2.2", {
           "packageLocation": "./.yarn/cache/didyoumean-npm-1.2.2-fd568ec571-808a1e4855.zip/node_modules/didyoumean/",
@@ -11204,6 +11215,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["i18n-iso-countries", [
+        ["npm:6.8.0", {
+          "packageLocation": "./.yarn/cache/i18n-iso-countries-npm-6.8.0-97f746074d-239b3da684.zip/node_modules/i18n-iso-countries/",
+          "packageDependencies": [
+            ["i18n-iso-countries", "npm:6.8.0"],
+            ["diacritics", "npm:1.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["iconv-lite", [
         ["npm:0.4.24", {
           "packageLocation": "./.yarn/cache/iconv-lite-npm-0.4.24-c5c4ac6695-a9b9521066.zip/node_modules/iconv-lite/",
@@ -11924,6 +11945,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/isexe-npm-2.0.0-b58870bd2e-7b437980bb.zip/node_modules/isexe/",
           "packageDependencies": [
             ["isexe", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["iso-639-1", [
+        ["npm:2.1.9", {
+          "packageLocation": "./.yarn/cache/iso-639-1-npm-2.1.9-1c1102767f-2b8154eb4b.zip/node_modules/iso-639-1/",
+          "packageDependencies": [
+            ["iso-639-1", "npm:2.1.9"]
           ],
           "linkType": "HARD",
         }]
