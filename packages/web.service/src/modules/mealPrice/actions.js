@@ -1,15 +1,8 @@
 import { MealPriceAlreadyExistsError } from './errors';
 import { MealPriceModel } from './schema';
 
-export const getMealPricePresenceAction = async (
-  mealType,
-  personType,
-  seasonType,
-  comfortLevel
-) => {
-  const presence = await MealPriceModel.findOne({ mealType, personType, seasonType, comfortLevel });
-  return presence;
-};
+export const getMealPricePresenceAction = (mealType, personType, seasonType, comfortLevel) =>
+  MealPriceModel.findOne({ mealType, personType, seasonType, comfortLevel });
 
 export const createMealPriceAction = async (
   mealType,
@@ -24,18 +17,12 @@ export const createMealPriceAction = async (
   return MealPriceModel.create({ mealType, personType, seasonType, comfortLevel, price });
 };
 
-export const getAllMealTypesPricesAction = async () => {
-  const mealTypes = await MealPriceModel.find();
-  return mealTypes;
-};
+export const getAllMealTypesPricesAction = () => MealPriceModel.find();
 
-export const getMealPriceByIdAction = async (id) => {
-  const mealPrice = await MealPriceModel.findById(id);
-  return mealPrice;
-};
+export const getMealPriceByIdAction = (id) => MealPriceModel.findById(id);
 
-export const updateMealTypeDataAction = async (id, meal) => {
-  const updatedMealPrice = await MealPriceModel.findByIdAndUpdate(
+export const updateMealTypeDataAction = (id, meal) =>
+  MealPriceModel.findByIdAndUpdate(
     id,
     {
       $set: {
@@ -48,10 +35,5 @@ export const updateMealTypeDataAction = async (id, meal) => {
     },
     { runValidators: true, new: true }
   );
-  return updatedMealPrice;
-};
 
-export const deleteMealPriceAction = async (id) => {
-  const result = await MealPriceModel.findByIdAndDelete(id);
-  return result;
-};
+export const deleteMealPriceAction = (id) => MealPriceModel.findByIdAndDelete(id);

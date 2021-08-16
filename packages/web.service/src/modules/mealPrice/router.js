@@ -28,7 +28,7 @@ const allowedComfortLevels = Object.values(ComfortLevels);
 export const mealPriceRouter = Router()
   .post(
     '/mealPrice',
-    body('mealType', ` Person type must be one of: ${allowedMealTypes}`)
+    body('mealType', ` Meal type must be one of: ${allowedMealTypes}`)
       .isNumeric()
       .custom((type) => allowedMealTypes.includes(type)),
     body('personType', ` Person type must be one of: ${allowedPersonTypes}`)
@@ -46,7 +46,7 @@ export const mealPriceRouter = Router()
       const { mealType, personType, seasonType, comfortLevel, price } = req.body;
       await createMealPriceAction(mealType, personType, seasonType, comfortLevel, price)
         .then(() => {
-          mealPriceLogger.info('created new meal price');
+          mealPriceLogger.info('created new Meal price');
           res.status(StatusCodes.CREATED).send();
         })
         .catch((err) => {
@@ -61,7 +61,18 @@ export const mealPriceRouter = Router()
   )
   .get('/mealPrice', handleValidationErrors, (req, res) => {
     getAllMealTypesPricesAction()
-      .then((meals) => res.send(meals))
+      .then((meals) =>
+        res.send(
+          meals.map(({ id, mealType, personType, seasonType, comfortLevel, price }) => ({
+            id,
+            mealType,
+            personType,
+            seasonType,
+            comfortLevel,
+            price,
+          }))
+        )
+      )
       .catch((err) => {
         mealPriceLogger.error(err);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
@@ -69,13 +80,21 @@ export const mealPriceRouter = Router()
   })
   .get(
     '/mealPrice/:id',
-    param('id', `It should be meal price id here`).isMongoId(),
+    param('id', `It should be Meal price id here`).isMongoId(),
     handleValidationErrors,
     async (req, res) => {
       const { id } = req.params;
       await getMealPriceByIdAction(id)
         .then((meal) => {
-          if (meal) res.send(meal);
+          if (meal)
+            res.send({
+              id: meal.id,
+              mealType: meal.mealType,
+              personType: meal.personType,
+              seasonType: meal.seasonType,
+              comfortLevel: meal.comfortLevel,
+              price: meal.price,
+            });
           else res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound());
         })
         .catch((err) => {
@@ -86,8 +105,8 @@ export const mealPriceRouter = Router()
   )
   .put(
     '/mealPrice/:id',
-    param('id', `It should be meal price id here`).isMongoId(),
-    body('mealType', ` Person type must be one of: ${allowedMealTypes}`)
+    param('id', `It should be Meal price id here`).isMongoId(),
+    body('mealType', ` Meal type must be one of: ${allowedMealTypes}`)
       .isNumeric()
       .custom((type) => allowedMealTypes.includes(type)),
     body('personType', ` Person type must be one of: ${allowedPersonTypes}`)
@@ -107,7 +126,7 @@ export const mealPriceRouter = Router()
       await updateMealTypeDataAction(id, { mealType, personType, seasonType, comfortLevel, price })
         .then((updatedMealPrice) => {
           mealPriceLogger.info(
-            'updated meal price:',
+            'updated Meal price:',
             updatedMealPrice.mealType,
             ' with id ',
             updatedMealPrice.id
@@ -122,14 +141,14 @@ export const mealPriceRouter = Router()
   )
   .delete(
     '/mealPrice/:id',
-    param('id', `It should be meal price id here`).isMongoId(),
+    param('id', `It should be Meal price id here`).isMongoId(),
     handleValidationErrors,
     async (req, res) => {
       const { id } = req.params;
       await deleteMealPriceAction(id)
         .then((deletedMealPrice) => {
           mealPriceLogger.info(
-            'deleted meal price:',
+            'deleted Meal price:',
             deletedMealPrice.mealType,
             ' with id ',
             deletedMealPrice.id

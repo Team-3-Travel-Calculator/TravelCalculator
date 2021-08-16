@@ -16,7 +16,6 @@ import {
   getMealServiceByIdAction,
   updateMealServiceAction,
 } from './actions';
-import { MealClientAlreadyExistsError } from './errors';
 
 const mealLogger = logger.getLogger('router.meal');
 
@@ -25,19 +24,21 @@ const allowedPersonTypes = Object.values(PersonTypes);
 const allowedSeasonTypes = Object.values(SeasonTypes);
 const allowedComfortLevels = Object.values(ComfortLevels);
 
-// TODO: Add Client field into body after merging its module
-
 export const mealRouter = Router()
   .post(
     '/meal',
-    body('personsMealCount', `Persons Meal Count should be an Array of objects`).isArray(),
+    body('client', `Client field should have an id`).isMongoId(),
+    body('personsMealCount', `Persons Meal count should be an Array of objects`).isArray(),
     body('personsMealCount.*.personType', ` Person type must be one of: ${allowedPersonTypes}`)
       .isNumeric()
       .custom((type) => allowedPersonTypes.includes(type)),
     body('personsMealCount.*.mealType', ` Meal type must be one of: ${allowedMealTypes}`)
       .isNumeric()
       .custom((type) => allowedMealTypes.includes(type)),
-    body('personsMealCount.*.personTypeNumber', `Person Meal Count should be a number`).isNumeric(),
+    body(
+      'personsMealCount.*.personTypeNumber',
+      `Person type number should be a number`
+    ).isNumeric(),
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
       .isNumeric()
       .custom((type) => allowedSeasonTypes.includes(type)),
@@ -46,39 +47,45 @@ export const mealRouter = Router()
       .custom((level) => allowedComfortLevels.includes(level)),
     handleValidationErrors,
     async (req, res) => {
-      const {
-        mealDate,
-        personsMealCount,
-        seasonType,
-        comfortLevel,
-        totalMealSpentTime,
-        totalPrice,
-      } = req.body;
-      await createMealServiceAction(
-        mealDate,
-        [personsMealCount],
-        seasonType,
-        comfortLevel,
-        totalMealSpentTime,
-        totalPrice
-      )
+      const { client, personsMealCount, seasonType, comfortLevel } = req.body;
+      await createMealServiceAction(client, personsMealCount, seasonType, comfortLevel)
         .then(() => {
           mealLogger.info('created new Meal service');
           res.status(StatusCodes.CREATED).send();
         })
         .catch((err) => {
-          if (err instanceof MealClientAlreadyExistsError) {
-            res.status(StatusCodes.CONFLICT).send(new createError.Conflict(err.message));
-          } else {
-            mealLogger.error(err);
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
-          }
+          mealLogger.error(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
         });
     }
   )
   .get('/meal', handleValidationErrors, (req, res) => {
     getAllMealServicesAction()
-      .then((mealServices) => res.send(mealServices))
+      .then((meals) =>
+        res.send(
+          meals.map(
+            ({
+              id,
+              client,
+              mealDate,
+              personsMealCount,
+              seasonType,
+              comfortLevel,
+              totalMealSpentTime,
+              totalPrice,
+            }) => ({
+              id,
+              client,
+              mealDate,
+              personsMealCount,
+              seasonType,
+              comfortLevel,
+              totalMealSpentTime,
+              totalPrice,
+            })
+          )
+        )
+      )
       .catch((err) => {
         mealLogger.error(err);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
@@ -86,13 +93,23 @@ export const mealRouter = Router()
   })
   .get(
     '/meal/:id',
-    param('id', `It should be meal price id here`).isMongoId(),
+    param('id', `It should be Meal id here`).isMongoId(),
     handleValidationErrors,
     async (req, res) => {
       const { id } = req.params;
       await getMealServiceByIdAction(id)
         .then((meal) => {
-          if (meal) res.send(meal);
+          if (meal)
+            res.send({
+              id: meal.id,
+              client: meal.client,
+              mealDate: meal.mealDate,
+              personsMealCount: meal.personsMealCount,
+              seasonType: meal.seasonType,
+              comfortLevel: meal.comfortLevel,
+              totalMealSpentTime: meal.totalMealSpentTime,
+              totalPrice: meal.totalPrice,
+            });
           else res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound());
         })
         .catch((err) => {
@@ -103,15 +120,20 @@ export const mealRouter = Router()
   )
   .put(
     '/meal/:id',
-    param('id', `It should be meal price id here`).isMongoId(),
-    body('personsMealCount', `Persons Meal Count should be an Array of objects`).isArray(),
+    param('id', `It should be Meal id here`).isMongoId(),
+    body('client', `Client field should have an id`).isMongoId(),
+    body('mealDate', `Meal date should be a string`).isString(),
+    body('personsMealCount', `Persons Meal count should be an Array of objects`).isArray(),
     body('personsMealCount.*.personType', ` Person type must be one of: ${allowedPersonTypes}`)
       .isNumeric()
       .custom((type) => allowedPersonTypes.includes(type)),
     body('personsMealCount.*.mealType', ` Meal type must be one of: ${allowedMealTypes}`)
       .isNumeric()
       .custom((type) => allowedMealTypes.includes(type)),
-    body('personsMealCount.*.personTypeNumber', `Person Meal Count should be a number`).isNumeric(),
+    body(
+      'personsMealCount.*.personTypeNumber',
+      `Person type number should be a number`
+    ).isNumeric(),
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
       .isNumeric()
       .custom((type) => allowedSeasonTypes.includes(type)),
@@ -121,23 +143,13 @@ export const mealRouter = Router()
     handleValidationErrors,
     async (req, res) => {
       const { id } = req.params;
-      const {
-        mealDate,
-        personsMealCount,
+      const { client, mealDate, personsMealCount, seasonType, comfortLevel } = req.body;
+      await updateMealServiceAction(id, client, mealDate, personsMealCount, {
         seasonType,
         comfortLevel,
-        totalMealSpentTime,
-        totalPrice,
-      } = req.body;
-      await updateMealServiceAction(id, personsMealCount, {
-        mealDate,
-        seasonType,
-        comfortLevel,
-        totalMealSpentTime,
-        totalPrice,
       })
         .then((updatedMealService) => {
-          mealLogger.info('updated meal service with id ', updatedMealService.id);
+          mealLogger.info('updated Meal service with id ', updatedMealService.id);
           res.status(StatusCodes.OK).send();
         })
         .catch((err) => {
@@ -148,13 +160,13 @@ export const mealRouter = Router()
   )
   .delete(
     '/meal/:id',
-    param('id', `It should be meal price id here`).isMongoId(),
+    param('id', `It should be Meal id here`).isMongoId(),
     handleValidationErrors,
     async (req, res) => {
       const { id } = req.params;
       await deleteMealServiceAction(id)
         .then((deletedMealService) => {
-          mealLogger.info('deleted meal service with id ', deletedMealService.id);
+          mealLogger.info('deleted Meal service with id ', deletedMealService.id);
           res.status(StatusCodes.OK).send();
         })
         .catch((err) => {
