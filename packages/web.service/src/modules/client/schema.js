@@ -1,7 +1,6 @@
+import countries from 'i18n-iso-countries';
+import ISO6391 from 'iso-639-1';
 import { model, Schema } from 'mongoose';
-
-import { Countries } from '../country';
-import { Languages } from '../language';
 
 export const ClientTypes = {
   Company: 1,
@@ -12,12 +11,12 @@ const ClientSchema = new Schema(
   {
     country: {
       type: String,
-      enum: Object.values(Countries).map((country) => country.code),
+      enum: Object.keys(countries.getAlpha2Codes()),
       required: true,
     },
     email: { type: String, required: true },
     phone: { type: String, required: true },
-    language: { type: String, enum: Object.values(Languages), required: true },
+    language: { type: String, enum: ISO6391.getAllCodes(), required: true },
   },
   {
     discriminatorKey: 'type',

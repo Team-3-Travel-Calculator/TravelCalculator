@@ -2,11 +2,11 @@ import { Router } from 'express';
 import { body, param } from 'express-validator';
 import createError from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
+import countries from 'i18n-iso-countries';
+import ISO6391 from 'iso-639-1';
 
 import { logger } from '../../logger';
 import { handleValidationErrors } from '../../services/handleValidationErrors';
-import { Countries } from '../country';
-import { Languages } from '../language';
 import {
   createClientAction,
   deleteClientAction,
@@ -19,8 +19,8 @@ import { ClientTypes } from './schema';
 
 const clientLogger = logger.getLogger('router.client');
 
-const allowedCountries = Object.values(Countries).map((country) => country.code);
-const allowedLanguages = Object.values(Languages);
+const allowedCountries = Object.keys(countries.getAlpha2Codes());
+const allowedLanguages = ISO6391.getAllCodes();
 const allowedClientTypes = Object.values(ClientTypes);
 
 export const clientRouter = Router()
@@ -64,13 +64,14 @@ export const clientRouter = Router()
     getAllClientsAction()
       .then((clients) =>
         res.send(
-          clients.map(({ type, email, country, fullName, companyName, phone, language }) => ({
+          clients.map(({ id, type, country, email, phone, language, fullName, companyName }) => ({
+            id,
             type,
-            email,
             country,
-            name: fullName || companyName,
+            email,
             phone,
             language,
+            name: fullName || companyName,
           }))
         )
       )
@@ -89,12 +90,13 @@ export const clientRouter = Router()
         .then((client) => {
           if (client)
             res.send({
+              id: client.id,
               type: client.type,
               email: client.email,
               country: client.country,
-              name: client.fullName || client.companyName,
               phone: client.phone,
               language: client.language,
+              name: client.fullName || client.companyName,
             });
           else res.status(StatusCodes.NOT_FOUND).send(new createError.NotFound());
         })
@@ -142,8 +144,8 @@ export const clientRouter = Router()
     async (req, res) => {
       const { id } = req.params;
       await deleteClientAction(id)
-        .then((deletedClient) => {
-          clientLogger.info('deleted client:', deletedClient.fullName || deletedClient.companyName);
+        .then(() => {
+          clientLogger.info('deleted client:', id);
           res.status(StatusCodes.OK).send();
         })
         .catch((err) => {
