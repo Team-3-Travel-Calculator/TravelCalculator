@@ -6,7 +6,7 @@ import { StatusCodes } from 'http-status-codes';
 import { logger } from '../../logger';
 import { handleValidationErrors } from '../../services/handleValidationErrors';
 import { loginUserAction } from './actions';
-import { IncorrectPasswordError, UserNotFoundError } from './errors.ts';
+import { IncorrectPasswordError, UserNotFoundError } from './errors';
 
 const authLogger = logger.getLogger('router.auth');
 

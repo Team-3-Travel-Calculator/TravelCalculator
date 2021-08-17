@@ -1,6 +1,6 @@
 import { genSaltSync, hash } from 'bcrypt';
 
-import { EmailAlreadyExistsError } from './errors.ts';
+import { EmailAlreadyExistsError } from './errors';
 import { UserModel, UserRoles } from './schema';
 
 const salt = genSaltSync();

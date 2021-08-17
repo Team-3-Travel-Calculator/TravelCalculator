@@ -2,7 +2,7 @@ import { compare } from 'bcrypt';
 import { nanoid } from 'nanoid';
 
 import { getUserByEmailAction } from '../user';
-import { IncorrectPasswordError, UserNotFoundError } from './errors.ts';
+import { IncorrectPasswordError, UserNotFoundError } from './errors';
 
 export const loginUserAction = async (email, password) => {
   const maybeUser = await getUserByEmailAction(email);

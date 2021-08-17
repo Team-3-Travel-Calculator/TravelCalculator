@@ -11,7 +11,7 @@ import {
   getUserByEmailAction,
   logoutUserAction,
 } from './actions';
-import { EmailAlreadyExistsError } from './errors.ts';
+import { EmailAlreadyExistsError } from './errors';
 import { UserRoles } from './schema';
 
 const userLogger = logger.getLogger('router.user');

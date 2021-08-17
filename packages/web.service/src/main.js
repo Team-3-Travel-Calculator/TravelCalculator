@@ -16,6 +16,7 @@ import { hotelPriceRouter } from './modules/hotelPrice';
 import { mealRouter } from './modules/meal';
 import { mealPriceRouter } from './modules/mealPrice';
 import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
+import { visitPriceRouter } from './modules/visitPrice';
 import { isProduction } from './services/isProduction';
 
 const passportStrategy = new Strategy((token, done) => {
@@ -57,6 +58,7 @@ export const main = async () => {
     .use(mealRouter)
     .use(hotelPriceRouter)
     .use(hotelRouter)
+    .use(visitPriceRouter)
     .listen(process.env.PORT, () => {
       mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });
