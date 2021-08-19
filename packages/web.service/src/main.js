@@ -9,6 +9,8 @@ import { databaseConnect } from './database';
 import { logger } from './logger';
 import { authRouter } from './modules/auth';
 import { clientRouter } from './modules/client';
+import { guideRouter } from './modules/guide';
+import { guidePriceRouter } from './modules/guidePrice';
 import { hotelRouter } from './modules/hotel';
 import { hotelPriceRouter } from './modules/hotelPrice';
 import { mealRouter } from './modules/meal';
@@ -49,6 +51,8 @@ export const main = async () => {
     .use(passport.authenticate('bearer', { session: false }))
     .use(userRouter)
     .use(clientRouter)
+    .use(guidePriceRouter)
+    .use(guideRouter)
     .use(mealPriceRouter)
     .use(mealRouter)
     .use(hotelPriceRouter)
