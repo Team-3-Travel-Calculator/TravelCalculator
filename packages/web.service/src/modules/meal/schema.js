@@ -1,13 +1,13 @@
-import { model, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 import { ComfortLevels } from '../comfortLevel';
 import { MealTypes } from '../mealType';
 import { PersonTypes } from '../personType';
 import { SeasonTypes } from '../season';
 
-const MealSchema = new Schema({
-  client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
-  mealDate: { type: Date, required: true },
+const MealSchema = new mongoose.Schema({
+  client: { type: mongoose.Schema.Types.ObjectId, ref: 'Client', required: true },
+  mealDate: { type: String, required: true },
   personsMealCount: [
     {
       personType: { type: Number, enum: Object.values(PersonTypes), required: true },
@@ -25,4 +25,4 @@ const MealSchema = new Schema({
   totalPrice: { type: String, required: true },
 });
 
-export const MealModel = model('Meal', MealSchema);
+export const MealModel = mongoose.model('Meal', MealSchema);
