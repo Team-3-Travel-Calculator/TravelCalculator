@@ -5686,6 +5686,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bcrypt", "npm:5.0.1"],
             ["cors", "npm:2.8.5"],
             ["dotenv", "npm:10.0.0"],
+            ["exact-math", "npm:2.2.3"],
             ["express", "npm:4.17.1"],
             ["express-validator", "npm:6.12.0"],
             ["http-errors", "npm:1.8.0"],
@@ -10076,6 +10077,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["exact-math", [
+        ["npm:2.2.3", {
+          "packageLocation": "./.yarn/cache/exact-math-npm-2.2.3-0cc62eaac3-46387a6e26.zip/node_modules/exact-math/",
+          "packageDependencies": [
+            ["exact-math", "npm:2.2.3"],
+            ["move-on", "npm:2.1.9"],
+            ["of-type", "npm:3.0.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["execa", [
         ["npm:5.1.1", {
           "packageLocation": "./.yarn/cache/execa-npm-5.1.1-191347acf5-4286ade8cd.zip/node_modules/execa/",
@@ -14047,6 +14059,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["move-on", [
+        ["npm:2.1.9", {
+          "packageLocation": "./.yarn/cache/move-on-npm-2.1.9-5dcfb3a598-8d4250e5d8.zip/node_modules/move-on/",
+          "packageDependencies": [
+            ["move-on", "npm:2.1.9"],
+            ["of-type", "npm:3.0.4"],
+            ["typeof-arguments", "npm:5.1.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["mpath", [
         ["npm:0.8.3", {
           "packageLocation": "./.yarn/cache/mpath-npm-0.8.3-c764f5a56c-6c129da222.zip/node_modules/mpath/",
@@ -14766,6 +14789,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["call-bind", "npm:1.0.2"],
             ["define-properties", "npm:1.1.3"],
             ["es-abstract", "npm:1.18.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["of-type", [
+        ["npm:3.0.4", {
+          "packageLocation": "./.yarn/cache/of-type-npm-3.0.4-d4fc33b11a-6ef5efeb92.zip/node_modules/of-type/",
+          "packageDependencies": [
+            ["of-type", "npm:3.0.4"]
           ],
           "linkType": "HARD",
         }]
@@ -18347,6 +18379,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["typedarray-to-buffer", "npm:3.1.5"],
             ["is-typedarray", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["typeof-arguments", [
+        ["npm:5.1.3", {
+          "packageLocation": "./.yarn/cache/typeof-arguments-npm-5.1.3-2041e1b574-21865c6703.zip/node_modules/typeof-arguments/",
+          "packageDependencies": [
+            ["typeof-arguments", "npm:5.1.3"],
+            ["of-type", "npm:3.0.4"]
           ],
           "linkType": "HARD",
         }]
