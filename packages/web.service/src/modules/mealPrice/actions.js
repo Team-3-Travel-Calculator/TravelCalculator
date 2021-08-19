@@ -21,7 +21,7 @@ export const getAllMealTypesPricesAction = () => MealPriceModel.find();
 
 export const getMealPriceByIdAction = (id) => MealPriceModel.findById(id);
 
-export const updateMealTypeDataAction = (id, meal) =>
+export const updateMealPriceAction = (id, meal) =>
   MealPriceModel.findByIdAndUpdate(
     id,
     {

@@ -55,9 +55,9 @@ export const createMealServiceAction = (client, personsMealCount, seasonType, co
   );
 };
 
-export const getAllMealServicesAction = () => MealModel.find();
+export const getAllMealServicesAction = () => MealModel.find().populate({ path: 'client' });
 
-export const getMealServiceByIdAction = (id) => MealModel.findById(id);
+export const getMealServiceByIdAction = (id) => MealModel.findById(id).populate({ path: 'client' });
 
 export const updateMealServiceAction = (id, client, mealDate, personsMealCount, mealParameters) => {
   const totalTime = getMealTotalSpentTime(personsMealCount);

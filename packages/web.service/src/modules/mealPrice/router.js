@@ -14,7 +14,7 @@ import {
   deleteMealPriceAction,
   getAllMealTypesPricesAction,
   getMealPriceByIdAction,
-  updateMealTypeDataAction,
+  updateMealPriceAction,
 } from './actions';
 import { MealPriceAlreadyExistsError } from './errors';
 
@@ -115,7 +115,7 @@ export const mealPriceRouter = Router()
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
       .isNumeric()
       .custom((type) => allowedSeasonTypes.includes(type)),
-    body('comfortLevel', `Comfort Level must be one of: ${allowedComfortLevels}`)
+    body('comfortLevel', `Comfort level must be one of: ${allowedComfortLevels}`)
       .isNumeric()
       .custom((type) => allowedComfortLevels.includes(type)),
     body('price', `Price should be entered`).isString().isLength({ min: 1 }),
@@ -123,7 +123,7 @@ export const mealPriceRouter = Router()
     async (req, res) => {
       const { id } = req.params;
       const { mealType, personType, seasonType, comfortLevel, price } = req.body;
-      await updateMealTypeDataAction(id, { mealType, personType, seasonType, comfortLevel, price })
+      await updateMealPriceAction(id, { mealType, personType, seasonType, comfortLevel, price })
         .then((updatedMealPrice) => {
           mealPriceLogger.info(
             'updated Meal price:',

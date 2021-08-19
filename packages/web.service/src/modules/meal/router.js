@@ -28,7 +28,7 @@ export const mealRouter = Router()
   .post(
     '/meal',
     body('client', `Client field should have an id`).isMongoId(),
-    body('personsMealCount', `Persons Meal count should be an Array of objects`).isArray(),
+    body('personsMealCount', `Persons meal count should be an Array of objects`).isArray(),
     body('personsMealCount.*.personType', ` Person type must be one of: ${allowedPersonTypes}`)
       .isNumeric()
       .custom((type) => allowedPersonTypes.includes(type)),
@@ -123,7 +123,7 @@ export const mealRouter = Router()
     param('id', `It should be Meal id here`).isMongoId(),
     body('client', `Client field should have an id`).isMongoId(),
     body('mealDate', `Meal date should be a string`).isString(),
-    body('personsMealCount', `Persons Meal count should be an Array of objects`).isArray(),
+    body('personsMealCount', `Persons meal count should be an Array of objects`).isArray(),
     body('personsMealCount.*.personType', ` Person type must be one of: ${allowedPersonTypes}`)
       .isNumeric()
       .custom((type) => allowedPersonTypes.includes(type)),
