@@ -2,18 +2,8 @@ import exactMath from 'exact-math';
 
 import { HotelPriceModel } from '../hotelPrice';
 import { RoomTypes } from '../hotelType';
-import { HotelClientAlreadyExistsError, RoomsNumberNotMatchToPersonsError } from './errors';
+import { RoomsNumberNotMatchToPersonsError } from './errors';
 import { HotelModel } from './schema';
-
-export const getHotelPresenceAction = (client, stayDate, stayInfo) =>
-  HotelModel.findOne({
-    client,
-    stayDate,
-    personsNumber: stayInfo.personsNumber,
-    hotelType: stayInfo.hotelType,
-    seasonType: stayInfo.seasonType,
-    comfortLevel: stayInfo.comfortLevel,
-  });
 
 export const getRoomsDistribution = (personsNumber) => {
   if (personsNumber > 1) {
@@ -54,9 +44,6 @@ export const getHotelTotalPrice = async (
 
 export const createHotelServiceAction = async (client, stayInfo) => {
   const stayDate = new Date().toLocaleDateString();
-  if (await getHotelPresenceAction(client, stayDate, stayInfo)) {
-    return Promise.reject(new HotelClientAlreadyExistsError());
-  }
   const roomsNumber = await getRoomsDistribution(stayInfo.personsNumber);
   return getHotelTotalPrice(
     stayInfo.hotelType,

@@ -27,7 +27,7 @@ const allowedComfortLevels = Object.values(ComfortLevels);
 export const hotelPriceRouter = Router()
   .post(
     '/hotelPrice',
-    body('hotelType', `Hotel Type must be one of: ${allowedHotelTypes}`)
+    body('hotelType', `Hotel type must be one of: ${allowedHotelTypes}`)
       .isNumeric()
       .custom((type) => allowedHotelTypes.includes(type)),
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
@@ -36,9 +36,9 @@ export const hotelPriceRouter = Router()
     body('comfortLevel', `Comfort level must be one of: ${allowedComfortLevels}`)
       .isNumeric()
       .custom((level) => allowedComfortLevels.includes(level)),
-    body('roomType', `Room Type must be one of: ${allowedRoomTypes}`)
+    body('roomType', `Room type must be one of: ${allowedRoomTypes}`)
       .isNumeric()
-      .custom((type) => allowedHotelTypes.includes(type)),
+      .custom((type) => allowedRoomTypes.includes(type)),
     body('price', `Price should be a string`).isString().isLength({ min: 1 }),
     handleValidationErrors,
     async (req, res) => {
@@ -105,7 +105,7 @@ export const hotelPriceRouter = Router()
   .put(
     '/hotelPrice/:id',
     param('id', `It should be Hotel price id here`).isMongoId(),
-    body('hotelType', `Hotel Type must be one of: ${allowedHotelTypes}`)
+    body('hotelType', `Hotel type must be one of: ${allowedHotelTypes}`)
       .isNumeric()
       .custom((type) => allowedHotelTypes.includes(type)),
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
@@ -114,7 +114,7 @@ export const hotelPriceRouter = Router()
     body('comfortLevel', `Comfort level must be one of: ${allowedComfortLevels}`)
       .isNumeric()
       .custom((level) => allowedComfortLevels.includes(level)),
-    body('roomType', `Room Type must be one of: ${allowedRoomTypes}`)
+    body('roomType', `Room type must be one of: ${allowedRoomTypes}`)
       .isNumeric()
       .custom((type) => allowedHotelTypes.includes(type)),
     body('price', `Price should be a string`).isString().isLength({ min: 1 }),
@@ -130,7 +130,7 @@ export const hotelPriceRouter = Router()
         price,
       })
         .then((updatedHotelPrice) => {
-          hotelPriceLogger.info('updated Hotel service with id ', updatedHotelPrice.id);
+          hotelPriceLogger.info('updated Hotel price with id ', updatedHotelPrice.id);
           res.status(StatusCodes.OK).send();
         })
         .catch((err) => {

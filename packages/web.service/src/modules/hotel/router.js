@@ -16,7 +16,7 @@ import {
   getHotelServiceByIdAction,
   updateHotelServiceAction,
 } from './actions';
-import { HotelClientAlreadyExistsError, RoomsNumberNotMatchToPersonsError } from './errors';
+import { RoomsNumberNotMatchToPersonsError } from './errors';
 
 const hotelLogger = logger.getLogger('router.hotel');
 
@@ -56,12 +56,8 @@ export const hotelRouter = Router()
           res.status(StatusCodes.CREATED).send();
         })
         .catch((err) => {
-          if (err instanceof HotelClientAlreadyExistsError) {
-            res.status(StatusCodes.CONFLICT).send(new createError.Conflict(err.message));
-          } else {
-            hotelLogger.error(err);
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
-          }
+          hotelLogger.error(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
         });
     }
   )
@@ -132,7 +128,7 @@ export const hotelRouter = Router()
     param('id', `It should be Hotel service id here`).isMongoId(),
     body('client', `Client field should have an id`).isMongoId(),
     body('stayDate', `Stay date should be a string`).isString(),
-    body('personsNumber', `Persons Number should be one of: ${allowedPersonsNumber}`)
+    body('personsNumber', `Persons number should be one of: ${allowedPersonsNumber}`)
       .isNumeric()
       .custom((number) => allowedPersonsNumber.includes(number)),
     body('hotelType', `Hotel type should be one of: ${allowedHotelTypes}`)
@@ -145,7 +141,7 @@ export const hotelRouter = Router()
       .isNumeric()
       .custom((level) => allowedComfortLevels.includes(level)),
     body('rooms', `Rooms field should be an array`).isArray(),
-    body('rooms.*.type', ` Rooms Type should be one of: ${allowedRoomTypes}`)
+    body('rooms.*.type', ` Rooms type should be one of: ${allowedRoomTypes}`)
       .isNumeric()
       .custom((type) => allowedRoomTypes.includes(type)),
     body('rooms.*.number', `Rooms number should have number format`).isNumeric(),
@@ -187,8 +183,8 @@ export const hotelRouter = Router()
     async (req, res) => {
       const { id } = req.params;
       await deleteHotelServiceAction(id)
-        .then((deletedService) => {
-          hotelLogger.info('deleted Hotel service with id: ', deletedService.id);
+        .then((deletedHotelService) => {
+          hotelLogger.info('deleted Hotel service with id: ', deletedHotelService.id);
           res.status(StatusCodes.OK).send();
         })
         .catch((err) => {
