@@ -13,20 +13,21 @@ export const getRoomsDistribution = (personsNumber) => {
 };
 
 export const getHotelTotalPrice = async (
+  personsNumber,
   hotelType,
   seasonType,
   comfortLevel,
-  rooms,
-  roomsNumber
+  rooms
 ) => {
   if (!rooms || rooms.length === 0) {
+    const roomsNumber = getRoomsDistribution(personsNumber);
     const roomPrice = await HotelPriceModel.findOne({
       seasonType,
       comfortLevel,
       hotelType,
       roomType: 2,
     });
-    return exactMath.mul(roomPrice.price, roomsNumber).toFixed();
+    return [exactMath.mul(roomPrice.price, roomsNumber).toFixed(), roomsNumber];
   }
   const roomTypesTotalPrices = await Promise.all(
     rooms.map(async ({ type, number }) => {
@@ -42,15 +43,14 @@ export const getHotelTotalPrice = async (
   return roomTypesTotalPrices.reduce((sum, value) => sum + value).toFixed(0);
 };
 
-export const createHotelServiceAction = async (client, stayInfo) => {
+export const createHotelServiceAction = (client, stayInfo) => {
   const stayDate = new Date().toLocaleDateString();
-  const roomsNumber = await getRoomsDistribution(stayInfo.personsNumber);
   return getHotelTotalPrice(
+    stayInfo.personsNumber,
     stayInfo.hotelType,
     stayInfo.seasonType,
-    stayInfo.comfortLevel,
-    roomsNumber
-  ).then((total) =>
+    stayInfo.comfortLevel
+  ).then((roomsTotalCount) =>
     HotelModel.create({
       client,
       stayDate,
@@ -60,10 +60,10 @@ export const createHotelServiceAction = async (client, stayInfo) => {
       comfortLevel: stayInfo.comfortLevel,
       rooms: [
         { type: 1, number: 0 },
-        { type: 2, number: roomsNumber },
+        { type: 2, number: roomsTotalCount[1] },
         { type: 3, number: 0 },
       ],
-      totalPrice: String(total),
+      totalPrice: String(roomsTotalCount[0]),
     })
   );
 };
@@ -90,6 +90,7 @@ export const updateHotelServiceAction = (id, client, stayDate, stayInfo, rooms) 
     return Promise.reject(new RoomsNumberNotMatchToPersonsError());
   }
   return getHotelTotalPrice(
+    stayInfo.personsNumber,
     stayInfo.hotelType,
     stayInfo.seasonType,
     stayInfo.comfortLevel,
