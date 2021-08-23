@@ -17,6 +17,7 @@ import { mealRouter } from './modules/meal';
 import { mealPriceRouter } from './modules/mealPrice';
 import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
 import { visitPriceRouter } from './modules/visitPrice';
+import { getOrCreateMaterials } from './services/getOrCreateMaterials';
 import { isProduction } from './services/isProduction';
 
 const passportStrategy = new Strategy((token, done) => {
@@ -44,6 +45,7 @@ export const main = async () => {
   }
 
   await getOrCreateOwnerAction(process.env.OWNER_EMAIL, process.env.OWNER_PASS);
+  await getOrCreateMaterials();
 
   express()
     .use(cors())
