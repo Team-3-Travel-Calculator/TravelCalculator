@@ -1,12 +1,12 @@
 export class UserNotFoundError extends Error {
-  public constructor(message: string) {
+  constructor(message) {
     super(message);
     this.name = 'UserNotFoundError';
   }
 }
 
 export class IncorrectPasswordError extends Error {
-  public constructor(message: string) {
+  constructor(message) {
     super(message);
     this.name = 'IncorrectPasswordError';
   }

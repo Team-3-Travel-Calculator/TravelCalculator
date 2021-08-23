@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 import { PersonTypes } from '../personType';
 import { SeasonTypes } from '../season';
@@ -10,4 +10,4 @@ const VisitPriceSchema = new Schema({
   price: { type: String, required: true },
 });
 
-export const VisitPriceModel = model('VisitPrice', VisitPriceSchema);
+export const VisitPriceModel = mongoose.model('VisitPrice', VisitPriceSchema);
