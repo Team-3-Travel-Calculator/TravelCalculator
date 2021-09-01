@@ -1,4 +1,4 @@
 export * from './actions';
-export * from './error';
+export * from './errors';
 export * from './router';
 export * from './schema';

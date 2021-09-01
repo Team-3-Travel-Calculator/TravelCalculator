@@ -42,9 +42,11 @@
     "iso-639-1": "^2.1.9",
     "log4js": "^6.3.0",
     "mongoose": "^5.13.2",
+    "multer": "^1.4.3",
     "nanoid": "^3.1.23",
     "passport": "^0.4.1",
-    "passport-http-bearer": "^1.0.1"
+    "passport-http-bearer": "^1.0.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@azimutlabs/rollup-config": "^1.0.1",

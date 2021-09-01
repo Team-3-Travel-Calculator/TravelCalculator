@@ -1,12 +1,12 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 import { PersonTypes } from '../personType';
 import { SeasonTypes } from '../season';
 
-const VisitPriceSchema = new Schema({
-  visitLocation: { type: Schema.Types.ObjectId, ref: 'Location', required: true },
+const VisitPriceSchema = new mongoose.Schema({
+  visitLocation: { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: true },
   personType: { type: Number, enum: Object.values(PersonTypes), required: true },
-  season: { type: Number, enum: Object.values(SeasonTypes), required: true },
+  seasonType: { type: Number, enum: Object.values(SeasonTypes), required: true },
   price: { type: String, required: true },
 });
 

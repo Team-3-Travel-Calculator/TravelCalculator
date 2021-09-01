@@ -1,29 +1,24 @@
 import { LocationModel } from '../location';
-import { LocationNotFoundError, VisitPriceNotFoundError, VisitPriceWasCreatedError } from './error';
+import { LocationNotFoundError, VisitPriceAlreadyExistsError } from './errors';
 import { VisitPriceModel } from './schema';
 
-const getVisitLocationAction = (location) => LocationModel.findById(location);
+export const getVisitLocationAction = (visitLocation) => LocationModel.findById(visitLocation);
+export const getVisitPricePresenceAction = (visitLocation, personType, seasonType) =>
+  VisitPriceModel.findOne({
+    visitLocation,
+    personType,
+    seasonType,
+  });
 
-export const createVisitPriceAction = async (visitLocation, personType, season, price) => {
+export const createVisitPriceAction = async (visitLocation, personType, seasonType, price) => {
   if (await getVisitLocationAction(visitLocation)) {
-    if (
-      await VisitPriceModel.findOne({
-        $or: [
-          {
-            visitLocation,
-            personType,
-            season,
-            price,
-          },
-        ],
-      })
-    ) {
-      return Promise.reject(new VisitPriceWasCreatedError());
+    if (await getVisitPricePresenceAction(visitLocation, personType, seasonType)) {
+      return Promise.reject(new VisitPriceAlreadyExistsError());
     }
     return VisitPriceModel.create({
       visitLocation,
       personType,
-      season,
+      seasonType,
       price,
     });
   }
@@ -35,21 +30,18 @@ export const getAllVisitPricesAction = () => VisitPriceModel.find().populate('vi
 export const getVisitPriceByIdAction = (id) =>
   VisitPriceModel.findById(id).populate('visitLocation');
 
-export const updateVisitPriceAction = async (id, visitPrice) => {
-  if (await getVisitPriceByIdAction(id)) {
-    return VisitPriceModel.findByIdAndUpdate(id, {
-      visitLocation: visitPrice.visitLocation,
-      personType: visitPrice.personType,
-      season: visitPrice.season,
-      price: visitPrice.price,
-    });
-  }
-  return Promise.reject(new VisitPriceNotFoundError());
-};
+export const updateVisitPriceAction = (id, visitPrice) =>
+  VisitPriceModel.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        visitLocation: visitPrice.visitLocation,
+        personType: visitPrice.personType,
+        seasonType: visitPrice.seasonType,
+        price: visitPrice.price,
+      },
+    },
+    { runValidators: true, new: true }
+  );
 
-export const deleteVisitPriceAction = async (id) => {
-  if (await getVisitPriceByIdAction(id)) {
-    return VisitPriceModel.findByIdAndDelete(id);
-  }
-  return Promise.reject(new VisitPriceNotFoundError());
-};
+export const deleteVisitPriceAction = (id) => VisitPriceModel.findByIdAndDelete(id);
