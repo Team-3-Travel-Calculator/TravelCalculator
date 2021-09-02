@@ -1,8 +1,7 @@
 import { AppBar, Button, CssBaseline, IconButton, Toolbar } from '@material-ui/core';
 import { Mail } from '@material-ui/icons';
-import type { NextPage } from 'next';
 
-const App: NextPage = () => {
+const App = () => {
   const login = 'Login';
 
   return (
