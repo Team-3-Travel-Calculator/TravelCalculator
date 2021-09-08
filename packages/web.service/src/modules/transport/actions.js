@@ -4,6 +4,7 @@ import { MealModel } from '../meal';
 import { TransportPriceModel } from '../transportPrice';
 import { TransportCalculationTypes } from '../transportType';
 import { TransportTypeNumberModel } from '../transportTypeNumber';
+import { VisitModel } from '../visit';
 import { TransportTypeNotMatchToPersonsError } from './errors';
 import { TransportModel } from './schema';
 
@@ -16,8 +17,12 @@ export const getTransportSpentTimeAction = async (
 ) => {
   if (calculationType === TransportCalculationTypes.HourlyTransport) {
     const meal = await MealModel.findOne({ client, mealDate: date, comfortLevel, seasonType });
-
-    return meal.totalMealSpentTime;
+    const visit = await VisitModel.findOne({
+      client,
+      attendanceDate: date,
+      orderedSeasonType: seasonType,
+    });
+    return exactMath.add(meal.totalMealSpentTime, visit.totalSpentTime);
   }
   return 'N/M';
 };
