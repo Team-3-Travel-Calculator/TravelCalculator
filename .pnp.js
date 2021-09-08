@@ -6897,19 +6897,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-<<<<<<< HEAD
       ["app-root-path", [
         ["npm:3.0.0", {
           "packageLocation": "./.yarn/cache/app-root-path-npm-3.0.0-029bfcbe5f-c4799a164f.zip/node_modules/app-root-path/",
           "packageDependencies": [
             ["app-root-path", "npm:3.0.0"]
-=======
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["append-field", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/append-field-npm-1.0.0-bb98be199c-1900b7b03c.zip/node_modules/append-field/",
           "packageDependencies": [
             ["append-field", "npm:1.0.0"]
->>>>>>> 7d58d74 (feat(web.service): add routes, actions & errors to Visit modules)
           ],
           "linkType": "HARD",
         }]
