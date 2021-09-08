@@ -15,12 +15,11 @@ import ISO6391 from 'iso-639-1';
 import moment from 'moment';
 import { useSession } from 'next-auth/client';
 import { useCallback, useState } from 'react';
-// Import { DateUtils } from 'react-day-picker';
+import { DateUtils } from 'react-day-picker';
 
-/*
- * Import DateRangePicker from './Components/DateRangePicker';
- * Import OrderForDay from './Components/orderForDay/orderForDay';
- */
+import DateRangePicker from './Components/DateRangePicker';
+
+// Import OrderForDay from './Components/orderForDay/orderForDay';
 
 const Login = 'Login';
 const Logout = 'Logout';
@@ -109,29 +108,25 @@ const Calculator = ({ countries }) => {
     handlePeopleSelect(!peopleSelect);
   }, [peopleSelect]);
 
-  /*
-   * Const handleOnDayClick = useCallback(
-   *   (day) => {
-   *     const range = DateUtils.addDayToRange(day, dateState);
-   *     handleDateState(range);
-   *   },
-   *   [dateState]
-   * );
-   */
+  const handleOnDayClick = useCallback(
+    (day) => {
+      const range = DateUtils.addDayToRange(day, dateState);
+      handleDateState(range);
+    },
+    [dateState]
+  );
 
   const handleKeyDown = useCallback(() => {
     handleDateState(false);
   }, []);
 
-  /*
-   * Const handleOnDayResetClick = () => {
-   *   handleDateState({
-   *     from: null,
-   *     to: null,
-   *   });
-   *   handleCalendar(!calendar);
-   * };
-   */
+  const handleOnDayResetClick = useCallback(() => {
+    handleDateState({
+      from: null,
+      to: null,
+    });
+    handleCalendar(!calendar);
+  }, [calendar]);
 
   const handleOnSelect = useCallback(
     (event) => {
@@ -210,11 +205,11 @@ const Calculator = ({ countries }) => {
         <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
           {calendar ? (
             <div>
-              {/* <DateRangePicker*/}
-              {/*  State={dateState}*/}
-              {/*  OnHandleResetClick={handleOnDayResetClick}*/}
-              {/*  OnHandleDayClick={handleOnDayClick}*/}
-              {/* />*/}
+              <DateRangePicker
+                State={dateState}
+                onHandleResetClick={handleOnDayResetClick}
+                onHandleDayClick={handleOnDayClick}
+              />
             </div>
           ) : (
             <div
