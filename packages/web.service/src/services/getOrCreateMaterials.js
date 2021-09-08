@@ -140,7 +140,7 @@ const getOrCreateSchemaWithLocation = async () => {
     await VisitPriceModel.create({
       visitLocation: locationMuseum.id,
       personType: PersonTypes.Driver,
-      season: SeasonTypes.Low,
+      seasonType: SeasonTypes.Low,
       price: '10000',
     });
     LoadLogger.info(`created materials at VisitPriceModel`);

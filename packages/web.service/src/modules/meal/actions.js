@@ -70,6 +70,7 @@ export const updateMealServiceAction = (id, client, mealDate, personsMealCount, 
       id,
       {
         $set: {
+          client,
           mealDate,
           personsMealCount,
           seasonType: mealParameters.seasonType,

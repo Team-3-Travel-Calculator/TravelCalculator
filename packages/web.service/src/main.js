@@ -13,9 +13,11 @@ import { guideRouter } from './modules/guide';
 import { guidePriceRouter } from './modules/guidePrice';
 import { hotelRouter } from './modules/hotel';
 import { hotelPriceRouter } from './modules/hotelPrice';
+import { locationRouter } from './modules/location';
 import { mealRouter } from './modules/meal';
 import { mealPriceRouter } from './modules/mealPrice';
 import { getOrCreateOwnerAction, getUserByTokenAction, userRouter } from './modules/user';
+import { visitRouter } from './modules/visit';
 import { visitPriceRouter } from './modules/visitPrice';
 import { getOrCreateMaterials } from './services/getOrCreateMaterials';
 import { isProduction } from './services/isProduction';
@@ -60,7 +62,9 @@ export const main = async () => {
     .use(mealRouter)
     .use(hotelPriceRouter)
     .use(hotelRouter)
+    .use(locationRouter)
     .use(visitPriceRouter)
+    .use(visitRouter)
     .listen(process.env.PORT, () => {
       mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });
