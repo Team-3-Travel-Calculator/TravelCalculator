@@ -4,8 +4,10 @@ import { useCallback } from 'react';
 
 const App = () => {
   const [session] = useSession();
+
   const login = 'Login';
   const logout = `Logout?`;
+  const AddNewManager = 'Add new manager';
 
   const handleLogOut = useCallback(() => {
     void signOut();
@@ -27,7 +29,7 @@ const App = () => {
                 {logout}
               </Button>
               <Button href="/register" color="inherit">
-                Add new manager
+                {AddNewManager}
               </Button>
             </div>
           )}

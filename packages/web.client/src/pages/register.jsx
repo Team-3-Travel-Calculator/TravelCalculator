@@ -9,9 +9,13 @@ import {
   Toolbar,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import {getSession, useSession} from 'next-auth/client';
-import {useCallback, useState} from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { getSession, useSession } from 'next-auth/client';
+import { useCallback, useState } from 'react';
+
+const Role = 'Role';
+const Manager = 'Manager';
+const Admin = 'Admin';
 
 const RegisterPage = () => {
   const [session] = useSession();
@@ -46,14 +50,14 @@ const RegisterPage = () => {
 
   const handleRegisterUser = useCallback(() => {
     axios.post('http://localhost:9811/user', userForm, {
-      headers: {Authorization: `Bearer ${session.token}`},
+      headers: { Authorization: `Bearer ${session.token}` },
     });
   }, [userForm, session.token]);
 
   return (
     <div>
       <div>
-        <CssBaseline/>
+        <CssBaseline />
         <AppBar position="static">
           <Toolbar>
             <div>
@@ -70,27 +74,27 @@ const RegisterPage = () => {
         direction="column"
         alignItems="center"
         justifycontent="center"
-        style={{minHeight: '70vh'}}
+        style={{ minHeight: '70vh' }}
       >
-        <div style={{margin: 20}}>
-          <FormControl style={{minWidth: 195}}>
-            <InputLabel>Role</InputLabel>
-            <Select native inputProps={{name: 'Role', id: 'role'}} onChange={handleInput}>
-              <option aria-label="None" value=""/>
-              <option value={2}>Manager</option>
-              <option value={4}>Admin</option>
+        <div style={{ margin: 20 }}>
+          <FormControl style={{ minWidth: 195 }}>
+            <InputLabel>{Role}</InputLabel>
+            <Select native inputProps={{ name: 'Role', id: 'role' }} onChange={handleInput}>
+              <option aria-label="None" value="" />
+              <option value={2}>{Manager}</option>
+              <option value={4}>{Admin}</option>
             </Select>
           </FormControl>
         </div>
-        <div style={{margin: 20}}>
-          <TextField color="primary" id="email" label="Email" onChange={handleInput}/>
+        <div style={{ margin: 20 }}>
+          <TextField color="primary" id="email" label="Email" onChange={handleInput} />
         </div>
-        <div style={{margin: 20}}>
-          <TextField color="primary" id="password" label="Password" onChange={handleInput}/>
+        <div style={{ margin: 20 }}>
+          <TextField color="primary" id="password" label="Password" onChange={handleInput} />
         </div>
         <div>
           <Button
-            style={{margin: 20}}
+            style={{ margin: 20 }}
             variant="outlined"
             color="primary"
             onClick={handleRegisterUser}
@@ -114,7 +118,7 @@ export const getServerSideProps = async (context) => {
     };
   }
   return {
-    props: {session},
+    props: { session },
   };
 };
 
