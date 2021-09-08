@@ -13,12 +13,17 @@ const DateRangePicker = ({ state, onHandleResetClick, onHandleDayClick }) => {
   const FIRST_DAY_OF_WEEK = {
     ru: 1,
   };
+
   const LABELS = {
     ru: { nextMonth: 'следующий месяц', previousMonth: 'предыдущий месяц' },
   };
+
   const locale = 'ru';
+
   const { from, to } = state;
+
   const modifiers = { start: from, end: to };
+
   const WEEKDAYS_SHORT = {
     ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
   };

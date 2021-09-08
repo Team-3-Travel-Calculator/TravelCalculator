@@ -18,8 +18,7 @@ import { useCallback, useState } from 'react';
 import { DateUtils } from 'react-day-picker';
 
 import DateRangePicker from './Components/DateRangePicker';
-
-// Import OrderForDay from './Components/orderForDay/orderForDay';
+import OrderForDay from './Components/orderForDay/orderForDay';
 
 const Login = 'Login';
 const Logout = 'Logout';
@@ -82,8 +81,8 @@ const Calculator = ({ countries }) => {
   const languageArr = ISO6391.getAllNames();
 
   const [dateState, handleDateState] = useState({
-    from: null,
-    to: null,
+    from: '',
+    to: '',
   });
 
   const [peopleSelect, handlePeopleSelect] = useState(false);
@@ -122,8 +121,8 @@ const Calculator = ({ countries }) => {
 
   const handleOnDayResetClick = useCallback(() => {
     handleDateState({
-      from: null,
-      to: null,
+      from: '',
+      to: '',
     });
     handleCalendar(!calendar);
   }, [calendar]);
@@ -206,7 +205,7 @@ const Calculator = ({ countries }) => {
           {calendar ? (
             <div>
               <DateRangePicker
-                State={dateState}
+                state={dateState}
                 onHandleResetClick={handleOnDayResetClick}
                 onHandleDayClick={handleOnDayClick}
               />
@@ -582,6 +581,9 @@ const Calculator = ({ countries }) => {
             </p>
           </div>
         </div>
+      </div>
+      <div>
+        <OrderForDay dayNumber="1" />
       </div>
     </div>
   );
