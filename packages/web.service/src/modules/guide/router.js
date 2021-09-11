@@ -28,6 +28,7 @@ export const guideRouter = Router()
   .post(
     '/guide',
     body('client', `Client field should have an id`).isMongoId(),
+    body('workDate', `Work date should be a string`).isString(),
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
       .isNumeric()
       .custom((type) => allowedSeasonTypes.includes(type)),
@@ -46,8 +47,8 @@ export const guideRouter = Router()
     body('guidesList.*.workHours'),
     handleValidationErrors,
     async (req, res) => {
-      const { client, seasonType, comfortLevel, guidesList } = req.body;
-      await createGuideServiceAction(client, seasonType, comfortLevel, guidesList)
+      const { client, workDate, seasonType, comfortLevel, guidesList } = req.body;
+      await createGuideServiceAction(client, workDate, seasonType, comfortLevel, guidesList)
         .then(() => {
           guideLogger.info('created new Guide service');
           res.status(StatusCodes.CREATED).send();
