@@ -28,6 +28,7 @@ export const mealRouter = Router()
   .post(
     '/meal',
     body('client', `Client field should have an id`).isMongoId(),
+    body('mealDate', `Meal date should be a string`).isString(),
     body('personsMealCount', `Persons meal count should be an Array of objects`).isArray(),
     body('personsMealCount.*.personType', ` Person type must be one of: ${allowedPersonTypes}`)
       .isNumeric()
@@ -47,8 +48,8 @@ export const mealRouter = Router()
       .custom((level) => allowedComfortLevels.includes(level)),
     handleValidationErrors,
     async (req, res) => {
-      const { client, personsMealCount, seasonType, comfortLevel } = req.body;
-      await createMealServiceAction(client, personsMealCount, seasonType, comfortLevel)
+      const { client, mealDate, personsMealCount, seasonType, comfortLevel } = req.body;
+      await createMealServiceAction(client, mealDate, personsMealCount, seasonType, comfortLevel)
         .then(() => {
           mealLogger.info('created new Meal service');
           res.status(StatusCodes.CREATED).send();

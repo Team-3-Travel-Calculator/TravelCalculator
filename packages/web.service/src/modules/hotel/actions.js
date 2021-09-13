@@ -43,9 +43,8 @@ export const getHotelTotalPrice = async (
   return roomTypesTotalPrices.reduce((sum, value) => sum + value).toFixed(0);
 };
 
-export const createHotelServiceAction = (client, stayInfo) => {
-  const stayDate = new Date().toLocaleDateString();
-  return getHotelTotalPrice(
+export const createHotelServiceAction = (client, stayDate, stayInfo) =>
+  getHotelTotalPrice(
     stayInfo.personsNumber,
     stayInfo.hotelType,
     stayInfo.seasonType,
@@ -66,7 +65,6 @@ export const createHotelServiceAction = (client, stayInfo) => {
       totalPrice: String(roomsTotalCount[0]),
     })
   );
-};
 
 export const getAllHotelServicesAction = () => HotelModel.find().populate({ path: 'client' });
 
