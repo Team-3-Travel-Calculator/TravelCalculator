@@ -30,6 +30,7 @@ export const hotelRouter = Router()
   .post(
     '/hotel',
     body('client', `Client field should have an id`).isMongoId(),
+    body('stayDate', `Stay date should be a string`).isString(),
     body('personsNumber', `Persons Number should be one of: ${allowedPersonsNumber}`)
       .isNumeric()
       .custom((number) => allowedPersonsNumber.includes(number)),
@@ -44,8 +45,8 @@ export const hotelRouter = Router()
       .custom((level) => allowedComfortLevels.includes(level)),
     handleValidationErrors,
     async (req, res) => {
-      const { client, personsNumber, hotelType, seasonType, comfortLevel } = req.body;
-      await createHotelServiceAction(client, {
+      const { client, stayDate, personsNumber, hotelType, seasonType, comfortLevel } = req.body;
+      await createHotelServiceAction(client, stayDate, {
         personsNumber,
         hotelType,
         seasonType,

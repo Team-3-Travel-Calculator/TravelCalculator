@@ -30,6 +30,7 @@ export const transportRouter = Router()
   .post(
     '/transport',
     body('client', `Client field should have an id`).isMongoId(),
+    body('transportationDate', `Transportation date should be a string`).isString(),
     body('seasonType', `Season must be one of: ${allowedSeasonTypes}`)
       .isNumeric()
       .custom((type) => allowedSeasonTypes.includes(type)),
@@ -45,16 +46,26 @@ export const transportRouter = Router()
     body('calculationType', ` Calculation type must be one of: ${allowedTransportCalculationTypes}`)
       .isNumeric()
       .custom((type) => allowedTransportCalculationTypes.includes(type)),
+    body('ridesCount'),
     handleValidationErrors,
     async (req, res) => {
-      const { client, personsNumber, seasonType, comfortLevel, transportType, calculationType } =
-        req.body;
-      await createTransportServiceAction(client, {
+      const {
+        client,
+        transportationDate,
         personsNumber,
         seasonType,
         comfortLevel,
         transportType,
         calculationType,
+        ridesCount,
+      } = req.body;
+      await createTransportServiceAction(client, transportationDate, {
+        personsNumber,
+        seasonType,
+        comfortLevel,
+        transportType,
+        calculationType,
+        ridesCount,
       })
         .then(() => {
           transportLogger.info('created new Transport service');
@@ -84,6 +95,7 @@ export const transportRouter = Router()
               calculationType,
               transportType,
               transportTypeNumber,
+              ridesCount,
               workHours,
               totalPrice,
             }) => ({
@@ -96,6 +108,7 @@ export const transportRouter = Router()
               calculationType,
               transportType,
               transportTypeNumber,
+              ridesCount,
               workHours,
               totalPrice,
             })
@@ -126,6 +139,7 @@ export const transportRouter = Router()
               calculationType: transportService.calculationType,
               transportType: transportService.transportType,
               transportTypeNumber: transportService.transportTypeNumber,
+              ridesCount: transportService.ridesCount,
               workHours: transportService.workHours,
               totalPrice: transportService.totalPrice,
             });
@@ -141,7 +155,7 @@ export const transportRouter = Router()
     '/transport/:id',
     param('id', `It should be Hotel service id here`).isMongoId(),
     body('client', `Client field should have an id`).isMongoId(),
-    body('transportationDate', `Stay date should be a string`).isString(),
+    body('transportationDate', `Transportation date should be a string`).isString(),
     body('personsNumber', `Persons number should be one of: ${allowedPersonsNumbers}`)
       .isNumeric()
       .custom((number) => allowedPersonsNumbers.includes(number)),
@@ -160,6 +174,7 @@ export const transportRouter = Router()
     body('transportType', `Transport type should be one of: ${allowedTransportTypes}`)
       .isNumeric()
       .custom((type) => allowedTransportTypes.includes(type)),
+    body('ridesCount', ` Rides count must be a number`).isNumeric(),
     handleValidationErrors,
     async (req, res) => {
       const { id } = req.params;
@@ -171,6 +186,7 @@ export const transportRouter = Router()
         comfortLevel,
         calculationType,
         transportType,
+        ridesCount,
       } = req.body;
       await updateTransportServiceAction(id, client, transportationDate, {
         personsNumber,
@@ -178,6 +194,7 @@ export const transportRouter = Router()
         seasonType,
         comfortLevel,
         transportType,
+        ridesCount,
       })
         .then((updatedTransportService) => {
           transportLogger.info('updated Transport service with id: ', updatedTransportService.id);

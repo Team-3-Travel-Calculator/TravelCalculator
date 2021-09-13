@@ -39,8 +39,13 @@ export const getMealTotalPrice = async (personsMealCount, seasonType, comfortLev
   return personTypesTotalPrices.reduce((sum, value) => sum + value).toFixed(0);
 };
 
-export const createMealServiceAction = (client, personsMealCount, seasonType, comfortLevel) => {
-  const mealDate = new Date().toLocaleDateString();
+export const createMealServiceAction = (
+  client,
+  mealDate,
+  personsMealCount,
+  seasonType,
+  comfortLevel
+) => {
   const totalMealTime = getMealTotalSpentTime(personsMealCount);
   return getMealTotalPrice(personsMealCount, seasonType, comfortLevel).then((total) =>
     MealModel.create({

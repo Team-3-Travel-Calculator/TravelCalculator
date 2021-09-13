@@ -56,9 +56,8 @@ export const getGuideTotalPrice = async (seasonType, comfortLevel, guidesList) =
   return guideTypesTotalPrices.reduce((sum, value) => sum + value).toFixed(0);
 };
 
-export const createGuideServiceAction = (client, seasonType, comfortLevel, guidesList) => {
-  const workDate = new Date().toLocaleDateString();
-  return getGuideTotalPrice(seasonType, comfortLevel, guidesList).then((total) =>
+export const createGuideServiceAction = (client, workDate, seasonType, comfortLevel, guidesList) =>
+  getGuideTotalPrice(seasonType, comfortLevel, guidesList).then((total) =>
     GuideModel.create({
       client,
       workDate,
@@ -68,7 +67,6 @@ export const createGuideServiceAction = (client, seasonType, comfortLevel, guide
       totalPrice: total,
     })
   );
-};
 
 export const getAllGuideServicesAction = () => GuideModel.find().populate({ path: 'client' });
 

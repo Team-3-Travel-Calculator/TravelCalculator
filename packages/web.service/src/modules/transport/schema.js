@@ -18,6 +18,7 @@ const TransportSchema = new mongoose.Schema({
     enum: Object.values(TransportCalculationTypes),
     required: true,
   },
+  ridesCount: { type: Number, default: 1 },
   workHours: { type: String, default: 'N/M' },
   totalPrice: { type: String, required: true },
 });
