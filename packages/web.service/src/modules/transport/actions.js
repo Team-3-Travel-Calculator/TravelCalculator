@@ -27,7 +27,13 @@ export const getTransportSpentTimeAction = async (
       attendanceDate: transportationDate,
       orderedSeasonType: seasonType,
     });
-    return exactMath.add(meal.totalMealSpentTime, visit.totalSpentTime);
+
+    if (meal && visit) {
+      return exactMath.add(meal.totalMealSpentTime, visit.totalSpentTime);
+    } else if (visit) {
+      return visit.totalSpentTime;
+    }
+    return meal.totalMealSpentTime;
   }
   return 'N/M';
 };
@@ -68,6 +74,7 @@ export const getTransportTotalPriceAction = async (
     comfortLevel: transportService.comfortLevel,
     calculationType: transportService.calculationType,
   });
+
   if (transportService.calculationType === TransportCalculationTypes.HourlyTransport) {
     return {
       workTime,
