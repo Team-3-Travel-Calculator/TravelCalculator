@@ -206,7 +206,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.Low,
       workTermType: WorkTermTypes.NoTerm.code,
       comfortLevel: ComfortLevels.Economy,
@@ -218,7 +218,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.High,
       workTermType: WorkTermTypes.NoTerm.code,
       comfortLevel: ComfortLevels.Economy,
@@ -230,7 +230,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.High,
       workTermType: WorkTermTypes.NoTerm.code,
       comfortLevel: ComfortLevels.Standard,
@@ -241,7 +241,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.Low,
       workTermType: WorkTermTypes.NoTerm.code,
       comfortLevel: ComfortLevels.Standard,
@@ -253,7 +253,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.High,
       workTermType: WorkTermTypes.NoTerm.code,
       comfortLevel: ComfortLevels.Comfort,
@@ -264,7 +264,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.Low,
       workTermType: WorkTermTypes.NoTerm.code,
       comfortLevel: ComfortLevels.Comfort,
@@ -276,7 +276,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Tour,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.Low,
       workTermType: WorkTermTypes.ShortTerm.code,
       comfortLevel: ComfortLevels.Economy,
@@ -288,7 +288,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.High,
       workTermType: WorkTermTypes.ShortTerm.code,
       comfortLevel: ComfortLevels.Economy,
@@ -300,7 +300,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.High,
       workTermType: WorkTermTypes.ShortTerm.code,
       comfortLevel: ComfortLevels.Standard,
@@ -311,7 +311,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.Low,
       workTermType: WorkTermTypes.ShortTerm.code,
       comfortLevel: ComfortLevels.Standard,
@@ -323,7 +323,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.High,
       workTermType: WorkTermTypes.ShortTerm.code,
       comfortLevel: ComfortLevels.Comfort,
@@ -334,7 +334,7 @@ const getOrCreateSchemaInfo = async () => {
   if (await checkCountInSchema(GuidePriceModel)) {
     await GuidePriceModel.create({
       guideType: GuideTypes.Transfer,
-      groupSize: GuideGroupSizes.Small,
+      groupSize: GuideGroupSizes.Small.code,
       seasonType: SeasonTypes.Low,
       workTermType: WorkTermTypes.ShortTerm.code,
       comfortLevel: ComfortLevels.Comfort,
