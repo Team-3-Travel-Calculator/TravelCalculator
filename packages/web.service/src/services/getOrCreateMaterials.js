@@ -1,25 +1,20 @@
 import { logger } from '../logger';
 import { ClientCompanyModel, ClientIndividualModel } from '../modules/client';
 import { ComfortLevels } from '../modules/comfortLevel';
-import { GuideModel } from '../modules/guide';
 import { GuidePriceModel } from '../modules/guidePrice';
 import { GuideGroupSizes, GuideTypes, WorkTermTypes } from '../modules/guideTypes';
-import { HotelModel } from '../modules/hotel';
 import { HotelPriceModel } from '../modules/hotelPrice';
 import { HotelTypes, RoomTypes } from '../modules/hotelType';
 import { LocationModel } from '../modules/location';
-import { MealModel } from '../modules/meal';
 import { MealPriceModel } from '../modules/mealPrice';
 import { MealTypes } from '../modules/mealType';
 import { PersonsNumbers } from '../modules/personsNumber';
 import { PersonTypes } from '../modules/personType';
 import { Regions } from '../modules/region';
 import { SeasonTypes } from '../modules/season';
-import { TransportModel } from '../modules/transport';
 import { TransportPriceModel } from '../modules/transportPrice';
 import { TransportCalculationTypes, TransportTypes } from '../modules/transportType';
 import { TransportTypeNumberModel } from '../modules/transportTypeNumber';
-import { VisitModel } from '../modules/visit';
 import { VisitPriceModel } from '../modules/visitPrice';
 
 const LoadLogger = logger.getLogger('Load');
@@ -51,7 +46,6 @@ const getOrCreateClients = async () => {
 const checkCountInSchema = async (schema) => (await schema.countDocuments()) === 0;
 
 const getOrCreateSchemaInfo = async () => {
-  const individualClient = await ClientIndividualModel.findOne({ client: 'John Doe' });
   if (await checkCountInSchema(HotelPriceModel)) {
     await HotelPriceModel.create({
       hotelType: HotelTypes.ThreeStars,
@@ -111,78 +105,6 @@ const getOrCreateSchemaInfo = async () => {
       price: '18000',
     });
     LoadLogger.info(`created materials at HotelPriceModel`);
-  }
-
-  if (await checkCountInSchema(HotelModel)) {
-    await HotelModel.create({
-      client: individualClient.id,
-      stayDate: '18.11.2021',
-      personsNumber: PersonsNumbers.Two,
-      hotelType: HotelTypes.ThreeStars,
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Economy,
-    });
-    LoadLogger.info(`created materials at HotelModel`);
-  }
-
-  if (await checkCountInSchema(HotelModel)) {
-    await HotelModel.create({
-      client: individualClient.id,
-      stayDate: '18.11.2021',
-      personsNumber: PersonsNumbers.Two,
-      hotelType: HotelTypes.ThreeStars,
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Economy,
-    });
-    LoadLogger.info(`created materials at HotelModel`);
-  }
-
-  if (await checkCountInSchema(HotelModel)) {
-    await HotelModel.create({
-      client: individualClient.id,
-      stayDate: '18.11.2021',
-      personsNumber: PersonsNumbers.Two,
-      hotelType: HotelTypes.ThreeStars,
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Standard,
-    });
-    LoadLogger.info(`created materials at HotelModel`);
-  }
-
-  if (await checkCountInSchema(HotelModel)) {
-    await HotelModel.create({
-      client: individualClient.id,
-      stayDate: '18.11.2021',
-      personsNumber: PersonsNumbers.Two,
-      hotelType: HotelTypes.ThreeStars,
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Standard,
-    });
-    LoadLogger.info(`created materials at HotelModel`);
-  }
-
-  if (await checkCountInSchema(HotelModel)) {
-    await HotelModel.create({
-      client: individualClient.id,
-      stayDate: '18.11.2021',
-      personsNumber: PersonsNumbers.Two,
-      hotelType: HotelTypes.ThreeStars,
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Comfort,
-    });
-    LoadLogger.info(`created materials at HotelModel`);
-  }
-
-  if (await checkCountInSchema(HotelModel)) {
-    await HotelModel.create({
-      client: individualClient.id,
-      stayDate: '18.11.2021',
-      personsNumber: PersonsNumbers.Two,
-      hotelType: HotelTypes.ThreeStars,
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Comfort,
-    });
-    LoadLogger.info(`created materials at HotelModel`);
   }
 
   if (await checkCountInSchema(LocationModel)) {
@@ -279,108 +201,6 @@ const getOrCreateSchemaInfo = async () => {
       price: '6000',
     });
     LoadLogger.info(`created materials at MealPriceModel`);
-  }
-
-  if (await checkCountInSchema(MealModel)) {
-    await MealModel.create({
-      client: individualClient.id,
-      mealDate: '18.11.2021',
-      personsMealCount: [
-        {
-          personTypeNumber: 2,
-          personType: PersonTypes.Adult,
-          mealType: MealTypes.Dinner.code,
-        },
-      ],
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Comfort,
-    });
-    LoadLogger.info(`created materials at MealModel`);
-  }
-
-  if (await checkCountInSchema(MealModel)) {
-    await MealModel.create({
-      client: individualClient.id,
-      mealDate: '18.11.2021',
-      personsMealCount: [
-        {
-          personTypeNumber: 2,
-          personType: PersonTypes.Adult,
-          mealType: MealTypes.Dinner.code,
-        },
-      ],
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Comfort,
-    });
-    LoadLogger.info(`created materials at MealModel`);
-  }
-
-  if (await checkCountInSchema(MealModel)) {
-    await MealModel.create({
-      client: individualClient.id,
-      mealDate: '18.11.2021',
-      personsMealCount: [
-        {
-          personTypeNumber: 2,
-          personType: PersonTypes.Adult,
-          mealType: MealTypes.Dinner.code,
-        },
-      ],
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Standard,
-    });
-    LoadLogger.info(`created materials at MealModel`);
-  }
-
-  if (await checkCountInSchema(MealModel)) {
-    await MealModel.create({
-      client: individualClient.id,
-      mealDate: '18.11.2021',
-      personsMealCount: [
-        {
-          personTypeNumber: 2,
-          personType: PersonTypes.Adult,
-          mealType: MealTypes.Dinner.code,
-        },
-      ],
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Standard,
-    });
-    LoadLogger.info(`created materials at MealModel`);
-  }
-
-  if (await checkCountInSchema(MealModel)) {
-    await MealModel.create({
-      client: individualClient.id,
-      mealDate: '18.11.2021',
-      personsMealCount: [
-        {
-          personTypeNumber: 2,
-          personType: PersonTypes.Adult,
-          mealType: MealTypes.Dinner.code,
-        },
-      ],
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Economy,
-    });
-    LoadLogger.info(`created materials at MealModel`);
-  }
-
-  if (await checkCountInSchema(MealModel)) {
-    await MealModel.create({
-      client: individualClient.id,
-      mealDate: '18.11.2021',
-      personsMealCount: [
-        {
-          personTypeNumber: 2,
-          personType: PersonTypes.Adult,
-          mealType: MealTypes.Dinner.code,
-        },
-      ],
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Economy,
-    });
-    LoadLogger.info(`created materials at MealModel`);
   }
 
   if (await checkCountInSchema(GuidePriceModel)) {
@@ -522,163 +342,12 @@ const getOrCreateSchemaInfo = async () => {
     });
     LoadLogger.info(`created materials at GuidePriceModel`);
   }
-
-  if (await checkCountInSchema(GuideModel)) {
-    await GuideModel.create({
-      client: individualClient.id,
-      workDate: '18.11.2021',
-      guidesList: [
-        {
-          type: GuideTypes.Transfer,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Ivanov',
-        },
-        {
-          type: GuideTypes.Tour,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Nurzhanova',
-          workHours: '2',
-        },
-      ],
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Comfort,
-    });
-    LoadLogger.info(`created materials at GuidePriceModel`);
-  }
-
-  if (await checkCountInSchema(GuideModel)) {
-    await GuideModel.create({
-      client: individualClient.id,
-      workDate: '18.11.2021',
-      guidesList: [
-        {
-          type: GuideTypes.Transfer,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Ivanov',
-        },
-        {
-          type: GuideTypes.Tour,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Nurzhanova',
-          workHours: '2',
-        },
-      ],
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Comfort,
-    });
-    LoadLogger.info(`created materials at GuidePriceModel`);
-  }
-
-  if (await checkCountInSchema(GuideModel)) {
-    await GuideModel.create({
-      client: individualClient.id,
-      workDate: '18.11.2021',
-      guidesList: [
-        {
-          type: GuideTypes.Transfer,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Ivanov',
-        },
-        {
-          type: GuideTypes.Tour,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Nurzhanova',
-          workHours: '2',
-        },
-      ],
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Standard,
-    });
-    LoadLogger.info(`created materials at GuidePriceModel`);
-  }
-
-  if (await checkCountInSchema(GuideModel)) {
-    await GuideModel.create({
-      client: individualClient.id,
-      workDate: '18.11.2021',
-      guidesList: [
-        {
-          type: GuideTypes.Transfer,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Ivanov',
-        },
-        {
-          type: GuideTypes.Tour,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Nurzhanova',
-          workHours: '2',
-        },
-      ],
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Standard,
-    });
-    LoadLogger.info(`created materials at GuidePriceModel`);
-  }
-
-  if (await checkCountInSchema(GuideModel)) {
-    await GuideModel.create({
-      client: individualClient.id,
-      workDate: '18.11.2021',
-      guidesList: [
-        {
-          type: GuideTypes.Transfer,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Ivanov',
-        },
-        {
-          type: GuideTypes.Tour,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Nurzhanova',
-          workHours: '2',
-        },
-      ],
-      seasonType: SeasonTypes.Low,
-      comfortLevel: ComfortLevels.Economy,
-    });
-    LoadLogger.info(`created materials at GuidePriceModel`);
-  }
-
-  if (await checkCountInSchema(GuideModel)) {
-    await GuideModel.create({
-      client: individualClient.id,
-      workDate: '18.11.2021',
-      guidesList: [
-        {
-          type: GuideTypes.Transfer,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Ivanov',
-        },
-        {
-          type: GuideTypes.Tour,
-          personsNumber: PersonsNumbers.Two,
-          number: 1,
-          name: 'Nurzhanova',
-          workHours: '2',
-        },
-      ],
-      seasonType: SeasonTypes.High,
-      comfortLevel: ComfortLevels.Economy,
-    });
-    LoadLogger.info(`created materials at GuidePriceModel`);
-  }
 };
 
 const getOrCreateTransports = async () => {
   const checkTransportType = (number) => TransportPriceModel.findOne({ transportType: number });
   const checkPersonsNumber = (number) =>
     TransportTypeNumberModel.findOne({ personsNumber: number });
-  const individualClient = await ClientIndividualModel.findOne({ client: 'John Doe' });
 
   if (!(await checkTransportType(TransportTypes.Sedan))) {
     await TransportPriceModel.create({
@@ -1026,181 +695,12 @@ const getOrCreateTransports = async () => {
     });
     LoadLogger.info(`created materials at TransportTypeNumberModel`);
   }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.HourlyTransport,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Comfort,
-      seasonType: SeasonTypes.High,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.HourlyTransport,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Comfort,
-      seasonType: SeasonTypes.Low,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.HourlyTransport,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Standard,
-      seasonType: SeasonTypes.High,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.HourlyTransport,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Standard,
-      seasonType: SeasonTypes.Low,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.HourlyTransport,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Economy,
-      seasonType: SeasonTypes.High,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.HourlyTransport,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Economy,
-      seasonType: SeasonTypes.Low,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.Transfer,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Comfort,
-      seasonType: SeasonTypes.High,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.Transfer,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Comfort,
-      seasonType: SeasonTypes.Low,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.Transfer,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Standard,
-      seasonType: SeasonTypes.High,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.Transfer,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Standard,
-      seasonType: SeasonTypes.Low,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.Transfer,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Economy,
-      seasonType: SeasonTypes.High,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
-
-  if (!(await checkCountInSchema(TransportModel))) {
-    await TransportModel.create({
-      client: individualClient.id,
-      transportationDate: '18.11.2021',
-      calculationType: TransportCalculationTypes.Transfer,
-      personsNumber: PersonsNumbers.Two,
-      comfortLevel: ComfortLevels.Economy,
-      seasonType: SeasonTypes.Low,
-      transportType: TransportTypes.Sedan,
-      ridesCount: 1,
-    });
-    LoadLogger.info(`created materials at TransportModel`);
-  }
 };
 
 const getOrCreateSchemaWithLocation = async () => {
   const locationFirst = await LocationModel.findOne({ location: 'Урочище Медео' });
   const locationSecond = await LocationModel.findOne({ location: 'Спортивный комплекс Медео' });
   const locationThird = await LocationModel.findOne({ location: 'Урочище Медео + ГК Шымбулак' });
-  const individualClient = await ClientIndividualModel.findOne({ client: 'John Doe' });
   if (locationFirst && (await checkCountInSchema(VisitPriceModel))) {
     await VisitPriceModel.create({
       visitLocation: locationFirst.id,
@@ -1256,66 +756,6 @@ const getOrCreateSchemaWithLocation = async () => {
       price: '4500',
     });
     LoadLogger.info(`created materials at VisitPriceModel`);
-  }
-
-  if (!(await checkCountInSchema(VisitModel))) {
-    await VisitModel.create({
-      client: individualClient.id,
-      attendanceDate: '18.11.2021',
-      visitors: [{ orderedLocation: locationFirst.id, personType: PersonTypes.Adult, count: 2 }],
-      orderedSeasonType: SeasonTypes.High,
-    });
-    LoadLogger.info(`created materials at VisitModel`);
-  }
-
-  if (!(await checkCountInSchema(VisitModel))) {
-    await VisitModel.create({
-      client: individualClient.id,
-      attendanceDate: '18.11.2021',
-      visitors: [{ orderedLocation: locationFirst.id, personType: PersonTypes.Adult, count: 2 }],
-      orderedSeasonType: SeasonTypes.Low,
-    });
-    LoadLogger.info(`created materials at VisitModel`);
-  }
-
-  if (!(await checkCountInSchema(VisitModel))) {
-    await VisitModel.create({
-      client: individualClient.id,
-      attendanceDate: '18.11.2021',
-      visitors: [{ orderedLocation: locationSecond.id, personType: PersonTypes.Adult, count: 2 }],
-      orderedSeasonType: SeasonTypes.High,
-    });
-    LoadLogger.info(`created materials at VisitModel`);
-  }
-
-  if (!(await checkCountInSchema(VisitModel))) {
-    await VisitModel.create({
-      client: individualClient.id,
-      attendanceDate: '18.11.2021',
-      visitors: [{ orderedLocation: locationSecond.id, personType: PersonTypes.Adult, count: 2 }],
-      orderedSeasonType: SeasonTypes.Low,
-    });
-    LoadLogger.info(`created materials at VisitModel`);
-  }
-
-  if (!(await checkCountInSchema(VisitModel))) {
-    await VisitModel.create({
-      client: individualClient.id,
-      attendanceDate: '18.11.2021',
-      visitors: [{ orderedLocation: locationThird.id, personType: PersonTypes.Adult, count: 2 }],
-      orderedSeasonType: SeasonTypes.High,
-    });
-    LoadLogger.info(`created materials at VisitModel`);
-  }
-
-  if (!(await checkCountInSchema(VisitModel))) {
-    await VisitModel.create({
-      client: individualClient.id,
-      attendanceDate: '18.11.2021',
-      visitors: [{ orderedLocation: locationThird.id, personType: PersonTypes.Adult, count: 2 }],
-      orderedSeasonType: SeasonTypes.Low,
-    });
-    LoadLogger.info(`created materials at VisitModel`);
   }
 };
 
