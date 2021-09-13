@@ -10,19 +10,30 @@ import { TransportModel } from './schema';
 
 export const getTransportSpentTimeAction = async (
   client,
-  date,
+  transportationDate,
   comfortLevel,
   seasonType,
   calculationType
 ) => {
   if (calculationType === TransportCalculationTypes.HourlyTransport) {
-    const meal = await MealModel.findOne({ client, mealDate: date, comfortLevel, seasonType });
+    const meal = await MealModel.findOne({
+      client,
+      mealDate: transportationDate,
+      comfortLevel,
+      seasonType,
+    });
     const visit = await VisitModel.findOne({
       client,
-      attendanceDate: date,
+      attendanceDate: transportationDate,
       orderedSeasonType: seasonType,
     });
-    return exactMath.add(meal.totalMealSpentTime, visit.totalSpentTime);
+
+    if (meal && visit) {
+      return exactMath.add(meal.totalMealSpentTime, visit.totalSpentTime);
+    } else if (visit) {
+      return visit.totalSpentTime;
+    }
+    return meal.totalMealSpentTime;
   }
   return 'N/M';
 };
@@ -45,13 +56,13 @@ export const getTransportTypeNumberAction = async (
 
 export const getTransportTotalPriceAction = async (
   client,
-  date,
+  transportationDate,
   transportService,
   transportTypeNumber
 ) => {
   const workTime = await getTransportSpentTimeAction(
     client,
-    date,
+    transportationDate,
     transportService.comfortLevel,
     transportService.seasonType,
     transportService.calculationType
@@ -74,11 +85,18 @@ export const getTransportTotalPriceAction = async (
   }
   return {
     workTime: 'N/M',
-    total: exactMath.mul(transportTypePrice.price, transportTypeNumber[0].number).toFixed(0),
+    ridesCount: transportService.ridesCount,
+    total: exactMath
+      .mul(transportTypePrice.price, transportTypeNumber[0].number, transportService.ridesCount)
+      .toFixed(0),
   };
 };
 
-export const createTransportServiceAction = async (client, transportService) => {
+export const createTransportServiceAction = async (
+  client,
+  transportationDate,
+  transportService
+) => {
   const transportTypeNumber = await getTransportTypeNumberAction(
     transportService.personsNumber,
     transportService.calculationType,
@@ -89,22 +107,26 @@ export const createTransportServiceAction = async (client, transportService) => 
   if (transportTypeNumber && transportTypeNumber.length === 0) {
     return Promise.reject(new TransportTypeNotMatchToPersonsError());
   }
-  const date = new Date().toLocaleDateString();
-  return getTransportTotalPriceAction(client, date, transportService, transportTypeNumber).then(
-    (totalData) =>
-      TransportModel.create({
-        client,
-        transportationDate: date,
-        personsNumber: transportService.personsNumber,
-        seasonType: transportService.seasonType,
-        comfortLevel: transportService.comfortLevel,
-        calculationType: transportService.calculationType,
-        transportType: transportService.transportType,
-        transportTypeNumber: transportTypeNumber[0].number,
-        workHours: totalData.workTime,
-        totalPrice: totalData.total,
-      })
-  );
+  return getTransportTotalPriceAction(
+    client,
+    transportationDate,
+    transportService,
+    transportTypeNumber
+  ).then((totalData) => {
+    TransportModel.create({
+      client,
+      transportationDate,
+      personsNumber: transportService.personsNumber,
+      seasonType: transportService.seasonType,
+      comfortLevel: transportService.comfortLevel,
+      calculationType: transportService.calculationType,
+      transportType: transportService.transportType,
+      transportTypeNumber: transportTypeNumber[0].number,
+      ridesCount: totalData.ridesCount,
+      workHours: totalData.workTime,
+      totalPrice: totalData.total,
+    });
+  });
 };
 
 export const getAllTransportServicesAction = () =>
@@ -144,6 +166,7 @@ export const updateTransportServiceAction = async (
           calculationType: transportService.calculationType,
           transportType: transportService.transportType,
           transportTypeNumber: transportTypeNumber[0].number,
+          ridesCount: totalData.ridesCount,
           workHours: totalData.workTime,
           totalPrice: totalData.total,
         },

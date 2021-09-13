@@ -24,6 +24,7 @@ export const visitRouter = Router()
   .post(
     '/visit',
     body('client', `Incorrect Client id`).isMongoId(),
+    body('attendanceDate', `Attendance date should be a string`).isString(),
     body('visitors', `Visitors should be an array`).isArray(),
     body('visitors.*.orderedLocation', `Incorrect Ordered location id`).isMongoId(),
     body('visitors.*.personType', `Visitors person type should be one of: ${allowedPersonTypes}`)
@@ -35,8 +36,8 @@ export const visitRouter = Router()
       .custom((type) => allowedSeasonTypes.includes(type)),
     handleValidationErrors,
     async (req, res) => {
-      const { client, visitors, orderedSeasonType } = req.body;
-      await createVisitServiceAction(client, visitors, orderedSeasonType)
+      const { client, attendanceDate, visitors, orderedSeasonType } = req.body;
+      await createVisitServiceAction(client, attendanceDate, visitors, orderedSeasonType)
         .then(() => {
           visitLogger.info('created new Visit service');
           res.status(StatusCodes.CREATED).send();
@@ -111,7 +112,7 @@ export const visitRouter = Router()
     '/visit/:id',
     param('id', `Incorrect Visit service id`).isMongoId(),
     body('client', `Incorrect Client id`).isMongoId(),
-    body('attendanceDate', `Attendance Date should be a string`).isString(),
+    body('attendanceDate', `Attendance date should be a string`).isString(),
     body('visitors', `Visitors should be an array`).isArray(),
     body('visitors.*.orderedLocation', `Incorrect Ordered location id`).isMongoId(),
     body('visitors.*.personType', `Visitors person type should be one of: ${allowedPersonTypes}`)

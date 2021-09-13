@@ -16,6 +16,7 @@ import { hotelPriceRouter } from './modules/hotelPrice';
 import { locationRouter } from './modules/location';
 import { mealRouter } from './modules/meal';
 import { mealPriceRouter } from './modules/mealPrice';
+import { offerRouter } from './modules/offer';
 import { transportRouter } from './modules/transport';
 import { transportPriceRouter } from './modules/transportPrice';
 import { transportTypeNumberRouter } from './modules/transportTypeNumber';
@@ -71,6 +72,7 @@ export const main = async () => {
     .use(transportTypeNumberRouter)
     .use(transportPriceRouter)
     .use(transportRouter)
+    .use(offerRouter)
     .listen(process.env.PORT, () => {
       mainLogger.info(`successfully started application on: ${process.env.PORT}`);
     });

@@ -37,14 +37,18 @@ export const getVisitTotalPrice = async (visitors, orderedSeasonType) => {
   return personTypesTotalPrices.reduce((sum, value) => sum + value).toFixed(0);
 };
 
-export const createVisitServiceAction = async (client, visitors, orderedSeasonType) => {
+export const createVisitServiceAction = async (
+  client,
+  attendanceDate,
+  visitors,
+  orderedSeasonType
+) => {
   if (await getVisitLocationsAction(visitors)) {
-    const attendanceDate = new Date().toLocaleDateString();
     const totalVisitTime = await getVisitTotalSpentTime(visitors);
     return getVisitTotalPrice(visitors, orderedSeasonType).then((total) => {
       VisitModel.create({
         client,
-        attendanceDate,
+        attendanceDate: String(attendanceDate),
         visitors,
         orderedSeasonType,
         totalSpentTime: String(totalVisitTime),
