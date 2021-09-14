@@ -9,7 +9,7 @@
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Project Status](#project-status)
-- [Contacts](#contacts) 
+- [Contacts](#contacts)
 - [License](#license)
 
 ## Technologies Used
@@ -24,7 +24,7 @@
 ## Roadmap
 >See the [open issues](https://github.com/travel-calculator/root/issues) for a list of proposed features (and known issues).
 
-## Project Status 
+## Project Status
 >Project is in progress.
 
 ## Contributing
@@ -38,15 +38,14 @@
 
 ## License
 >Some license will be here
- 
+
  ## Contacts
 >Feel free to contact us:
 
-**Mentor:** 
+**Mentor:**
 - Аrshabekov Alihan (alihan.arshabekov@gmail.com)
 
 **Team:**
-- Kim Victor (kim.victor.aleksandrovich@gmail.com) 
 - Assayev Ibragim (ibragimilita@gmail.com)
 - Aimkulova Botagoz (botagoz.aimkulova@gmail.com)
 - Alexeeva Tatyana (i.tatyan.a@gmail.com)
