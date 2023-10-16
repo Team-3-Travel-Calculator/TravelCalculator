@@ -48,6 +48,6 @@
 **Team:**
 - Assayev Ibragim (ibragimilita@gmail.com)
 - Aimkulova Botagoz (botagoz.aimkulova@gmail.com)
-- Alexeeva Tatyana (i.tatyan.a@gmail.com)
+- Alexeeva Tatyana (i.tatyana.a@gmail.com)
 
 **Project Link:** https://github.com/travel-calculator/root.git
